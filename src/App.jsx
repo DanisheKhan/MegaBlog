@@ -24,7 +24,7 @@ function App() {
   
   return !loading ? (
     <div className='max-w-full flex flex-wrap content-between backdrop:blur-3xl border' >
-      <div className='w-full block'>
+      <div className='w-full block '>
         <Header className="" />
         <main>
         <Outlet />
