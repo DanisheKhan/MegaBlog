@@ -23,11 +23,11 @@ function App() {
   }, [])
   
   return !loading ? (
-    <div className='max-w-full flex flex-wrap content-between backdrop:blur-3xl border' >
-      <div className='w-full block '>
-        <Header className="" />
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+      <div className='w-full block'>
+        <Header />
         <main>
-        <Outlet />
+        TODO:  <Outlet />
         </main>
         <Footer />
       </div>
