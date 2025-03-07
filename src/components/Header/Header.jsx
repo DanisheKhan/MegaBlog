@@ -37,12 +37,12 @@ function Header() {
   ];
 
   return (
-    <header className="py-5 font-medium shadow">
+    <header className="py-5 font-medium glass flex items-center">
       <Container>
-        <nav className="flex">
-          <div className="mr-4">
+        <nav className="flex items-center" >
+          <div className="">
             <Link to="/">
-              <Logo width="70px" />
+              <Logo  />
             </Link>
           </div>
           <ul className="flex ml-auto">

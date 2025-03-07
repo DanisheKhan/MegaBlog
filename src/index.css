@@ -1,20 +1,36 @@
 @import "tailwindcss";
 
-body{
+body {
   background-image: url("../Images/bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  backdrop-filter: saturate(70%);
+  backdrop-filter: saturate(50%);
   color: white;
-
 }
 
-.navGlassEffect {
-  position: fixed;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(40, 17, 20, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.125);
+.glass {
+  background: rgba(255, 0, 0, 0.021);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 24px;
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);  */
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+.postCard {
+  background: rgba(255, 0, 0, 0.021);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+ 
+  padding: 24px;
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);  */
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
 }
