@@ -2,12 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #111927;
-  background-image: radial-gradient(
-      at 50% 10%,
-      hsl(162, 77%, 40%) 0,
-      transparent 59%
-    ),
-    radial-gradient(at 82% 65%, hsl(218, 39%, 11%) 0, transparent 55%);
+body{
+  background-image: url("../public/Images/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+
+}
+
+.Card {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
 }

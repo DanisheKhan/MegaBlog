@@ -26,7 +26,7 @@ function App() {
     <div className='min-h-screen flex flex-col'>
       <Header />
       <main className='flex-grow'>
-        <Outlet />
+        <Outlet className="Card" />
       </main>
       <Footer />
     </div>
