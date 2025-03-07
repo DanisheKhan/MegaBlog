@@ -6,6 +6,8 @@ body{
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+  backdrop-filter: saturate(70%);
+  color: white;
 
 }
 
