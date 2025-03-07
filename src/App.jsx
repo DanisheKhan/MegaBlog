@@ -24,7 +24,7 @@ function App() {
   
   return !loading ? (
     <div className='min-h-screen flex flex-col'>
-      <Header />
+      <Header  />
       <main className='flex-grow'>
         <Outlet className="Card" />
       </main>
