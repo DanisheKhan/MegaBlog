@@ -37,12 +37,12 @@ function Header() {
   ];
 
   return (
-    <header className="py-5 font-medium glass flex items-center">
+    <header className="py-5 font-medium glass flex items-center h-20">
       <Container>
-        <nav className="flex items-center" >
+        <nav className="flex items-center h-full">
           <div className="">
             <Link to="/">
-              <Logo  />
+              <Logo />
             </Link>
           </div>
           <ul className="flex ml-auto">
@@ -51,7 +51,7 @@ function Header() {
                 <li key={item.name}>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className="inline-bock px-8 py-2 duration-200  rounded-full "
+                    className="inline-block px-8 py-2 duration-200 cursor-pointer rounded-full bb transition hover:scale-105 hover:text-red-300"
                   >
                     {item.name}
                   </button>
