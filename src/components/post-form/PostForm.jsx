@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaUpload } from "react-icons/fa";
 
-
 export default function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
@@ -109,7 +108,7 @@ export default function PostForm({ post }) {
       </div>
       <div className="w-1/3 px-2">
         <label className="flex mb-4 items-center justify-center gap-2 w-full cursor-pointer postCard py-2">
-        <FaUpload />
+          <FaUpload />
           <span>{watch("image")?.[0]?.name || "UPLOAD IMAGE"}</span>
           <input
             type="file"
@@ -129,10 +128,16 @@ export default function PostForm({ post }) {
         )}
         <Select
           options={["ACTIVE", "INACTIVE"]}
-          label="Status"
-          className="mb-4 postCard"
+          label="STATUS"
+          className="mb-4  postCard"
+          value={watch("status")}
           {...register("status", { required: true })}
         />
+        
+
+
+
+
         <Button
           type="submit"
           bgColor={post ? "bg-green-500" : undefined}
@@ -141,6 +146,7 @@ export default function PostForm({ post }) {
           {post ? "Update" : "Submit"}
         </Button>
       </div>
+    
     </form>
   );
 }
