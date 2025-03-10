@@ -77,7 +77,7 @@ export default function PostForm({ post }) {
                 <Input
                     label="Title :"
                     placeholder="Title"
-                    className="mb-4"
+                    className="mb-4 "
                     {...register("title", { required: true })}
                 />
                 <Input

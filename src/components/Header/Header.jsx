@@ -45,13 +45,13 @@ function Header() {
               <Logo />
             </Link>
           </div>
-          <ul className="flex ml-auto">
+          <ul className="flex ml-auto box-border">
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name}>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className="inline-block px-8 py-2 duration-200 cursor-pointer rounded-full bb transition hover:scale-105 hover:text-red-300"
+                    className="inline-block px-8 py-2 duration-200 cursor-pointer rounded-full  transition hover:border-b  hover:text-red-300"
                   >
                     {item.name}
                   </button>
