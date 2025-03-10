@@ -100,11 +100,6 @@ export default function PostForm({ post }) {
             });
           }}
         />
-        <RTE
-          name="content"
-          control={control}
-          defaultValue={getValues("content")}
-        />
       </div>
       <div className="w-1/3 px-2">
         <label className="flex mb-4 items-center justify-center gap-2 w-full cursor-pointer postCard py-2">
@@ -117,15 +112,7 @@ export default function PostForm({ post }) {
             {...register("image", { required: !post })}
           />
         </label>
-        {post && (
-          <div className="w-full mb-4">
-            <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
-              alt={post.title}
-              className="rounded-lg"
-            />
-          </div>
-        )}
+
         <Select
           options={["ACTIVE", "INACTIVE"]}
           label="STATUS"
@@ -133,20 +120,34 @@ export default function PostForm({ post }) {
           value={watch("status")}
           {...register("status", { required: true })}
         />
-        
+      </div>
+      <div className="w-full flex flex-col gap-3 items-center postCard">
+        <div className="w-96 ">
+          {post && (
+            <div className="w-full">
+              <img
+                src={appwriteService.getFilePreview(post.featuredImage)}
+                alt={post.title}
+                className="rounded-lg"
+              />
+            </div>
+          )}
+        </div>
 
-
-
+        <RTE
+          name="content"
+          control={control}
+          defaultValue={getValues("content")}
+        />
 
         <Button
           type="submit"
           bgColor={post ? "bg-green-500" : undefined}
           className="w-full postCard cursor-pointer"
         >
-          {post ? "Update" : "Submit"}
+          {post ? "UPDATE" : "SUBMIT"}
         </Button>
       </div>
-    
     </form>
   );
 }
