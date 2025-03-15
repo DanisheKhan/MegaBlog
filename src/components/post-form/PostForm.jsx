@@ -7,7 +7,15 @@ import { useSelector } from "react-redux";
 import { FaUpload, FaPlus, FaSave } from "react-icons/fa";
 
 export default function PostForm({ post }) {
-  const { register, handleSubmit, watch, setValue, control, getValues, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    control,
+    getValues,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       title: post?.title || "",
       slug: post?.$id || "",
@@ -103,8 +111,20 @@ export default function PostForm({ post }) {
                 label="Title"
                 id="title"
                 placeholder="Enter post title"
-                className={`glass-input ${errors.title ? "border-red-400/50" : ""}`}
-                {...register("title", { required: "Title is required" })}
+                className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${
+                  errors.title ? "border-red-400/50" : ""
+                }`}
+                {...register("title", {
+                  required: "Title is required",
+                  minLength: {
+                    value: 5,
+                    message: "Title must be at least 5 characters",
+                  },
+                  maxLength: {
+                    value: 100,
+                    message: "Title cannot exceed 100 characters",
+                  },
+                })}
               />
               {errors.title && (
                 <span className="text-red-300 text-sm mt-1">{errors.title.message}</span>
@@ -116,11 +136,19 @@ export default function PostForm({ post }) {
                 label="Slug"
                 id="slug"
                 placeholder="Auto-generated slug"
-                className={`glass-input ${errors.slug ? "border-red-400/50" : ""}`}
-                {...register("slug", { required: "Slug is required" })}
+                className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${
+                  errors.slug ? "border-red-400/50" : ""
+                }`}
+                {...register("slug", {
+                  required: "Slug is required",
+                  pattern: {
+                    value: /^[a-z0-9-]+$/,
+                    message: "Slug can only contain lowercase letters, numbers, and hyphens",
+                  },
+                })}
                 onInput={(e) => {
-                  setValue("slug", slugTransform(e.currentTarget.value), { 
-                    shouldValidate: true 
+                  setValue("slug", slugTransform(e.currentTarget.value), {
+                    shouldValidate: true,
                   });
                 }}
                 disabled
@@ -133,8 +161,8 @@ export default function PostForm({ post }) {
 
           {/* Right Column - Image Upload */}
           <div>
-            <label 
-              htmlFor="image" 
+            <label
+              htmlFor="image"
               className="glass-upload flex flex-col items-center justify-center p-4 md:p-6 border-2 border-dashed border-white/20 rounded-xl hover:border-purple-300/50 transition-colors cursor-pointer min-h-[200px]"
             >
               <FaUpload className="w-6 h-6 md:w-8 md:h-8 text-purple-200 mb-2" />
@@ -146,7 +174,17 @@ export default function PostForm({ post }) {
                 type="file"
                 className="hidden"
                 accept="image/png, image/jpg, image/jpeg, image/gif"
-                {...register("image", { required: !post && "Image is required" })}
+                {...register("image", {
+                  required: !post && "Featured image is required",
+                  validate: {
+                    fileSize: (file) =>
+                      file[0]?.size <= 5 * 1024 * 1024 || "File size must be less than 5MB",
+                    fileType: (file) =>
+                      ["image/png", "image/jpg", "image/jpeg", "image/gif"].includes(
+                        file[0]?.type
+                      ) || "Only PNG, JPG, JPEG, and GIF files are allowed",
+                  },
+                })}
               />
             </label>
             {errors.image && (
@@ -173,13 +211,19 @@ export default function PostForm({ post }) {
 
         {/* Content Editor */}
         <div className="mb-6 md:mb-8">
-          <div className="glass-panel  md:p-4 rounded-xl border border-white/10">
+          <div className="glass-panel md:p-4 rounded-xl border border-white/10">
             <RTE
-              
               name="content"
               control={control}
               defaultValue={getValues("content")}
               className="min-h-[400px] md:min-h-[500px] text-purple-50"
+              rules={{
+                required: "Content is required",
+                minLength: {
+                  value: 100,
+                  message: "Content must be at least 100 characters",
+                },
+              }}
             />
             {errors.content && (
               <span className="text-red-300 text-sm mt-2 block">{errors.content.message}</span>

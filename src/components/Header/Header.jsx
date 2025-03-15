@@ -21,17 +21,17 @@ function Header() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-transparent backdrop-blur-sm">
+    <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-sm">
       <Container>
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="z-50">
-            <Logo />
+            <Logo className="text-purple-300 hover:text-purple-200 transition-colors" />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-4">
-            <ul className="flex items-center gap-4">
+            <ul className="flex items-center gap-2">
               {navItems.map((item) =>
                 item.active ? (
                   <li key={item.name}>
@@ -40,7 +40,7 @@ function Header() {
                         navigate(item.slug);
                         closeMenu();
                       }}
-                      className="px-4 py-2 text-sm font-medium text-white hover:text-indigo-200 transition-colors rounded-lg"
+                      className="px-4 py-2 text-sm font-medium text-white hover:text-purple-200 hover:bg-white/10 rounded-lg transition-all duration-200"
                     >
                       {item.name}
                     </button>
@@ -49,7 +49,7 @@ function Header() {
               )}
               {authStatus && (
                 <li>
-                  <LogoutBtn className="text-white hover:text-indigo-200 ml-4" />
+                  <LogoutBtn className="text-white hover:text-purple-200 ml-4" />
                 </li>
               )}
             </ul>
@@ -58,7 +58,7 @@ function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg z-50 text-white hover:text-indigo-200"
+            className="md:hidden p-2 rounded-lg z-50 text-white hover:text-purple-200 hover:bg-white/10 transition-all"
           >
             {isMenuOpen ? (
               <X className="w-6 h-6" />
@@ -69,32 +69,34 @@ function Header() {
 
           {/* Mobile Menu */}
           <div
-            className={`absolute top-16 right-0 w-full bg-black/80 backdrop-blur-lg md:hidden transition-all duration-300 ${
+            className={`fixed inset-0 bg-black/80 backdrop-blur-lg md:hidden transition-opacity duration-300 ${
               isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
             }`}
           >
-            <ul className="flex flex-col items-center gap-4 py-4">
-              {navItems.map((item) =>
-                item.active ? (
-                  <li key={item.name}>
-                    <button
-                      onClick={() => {
-                        navigate(item.slug);
-                        closeMenu();
-                      }}
-                      className="text-lg font-medium text-white hover:text-indigo-200 py-2 px-4 rounded-lg transition-colors"
-                    >
-                      {item.name}
-                    </button>
+            <div className="flex flex-col items-center justify-center h-full gap-6">
+              <ul className="flex flex-col items-center gap-4">
+                {navItems.map((item) =>
+                  item.active ? (
+                    <li key={item.name}>
+                      <button
+                        onClick={() => {
+                          navigate(item.slug);
+                          closeMenu();
+                        }}
+                        className="text-lg font-medium text-white hover:text-purple-200 py-2 px-4 rounded-lg transition-colors"
+                      >
+                        {item.name}
+                      </button>
+                    </li>
+                  ) : null
+                )}
+                {authStatus && (
+                  <li>
+                    <LogoutBtn className="text-white hover:text-purple-200" />
                   </li>
-                ) : null
-              )}
-              {authStatus && (
-                <li>
-                  <LogoutBtn className="text-white hover:text-indigo-200" />
-                </li>
-              )}
-            </ul>
+                )}
+              </ul>
+            </div>
           </div>
         </nav>
       </Container>
