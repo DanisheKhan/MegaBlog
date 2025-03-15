@@ -5,6 +5,7 @@ import authService from "../appwrite/auth";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { FaUserPlus } from "react-icons/fa";
+import { login } from "../store/authSlice";
 
 function Signup() {
   const navigate = useNavigate();
@@ -79,7 +80,9 @@ function Signup() {
                   })}
                 />
                 {errors.name && (
-                  <span className="text-red-300 text-sm mt-1">{errors.name.message}</span>
+                  <span className="text-red-300 text-sm mt-1">
+                    {errors.name.message}
+                  </span>
                 )}
               </div>
 
@@ -102,7 +105,9 @@ function Signup() {
                   })}
                 />
                 {errors.email && (
-                  <span className="text-red-300 text-sm mt-1">{errors.email.message}</span>
+                  <span className="text-red-300 text-sm mt-1">
+                    {errors.email.message}
+                  </span>
                 )}
               </div>
 
@@ -123,14 +128,14 @@ function Signup() {
                       message: "Password must be at least 8 characters",
                     },
                     validate: (value) =>
-                      /[A-Z]/.test(value) &&
-                      /[0-9]/.test(value) &&
-                      /[!@#$%^&*]/.test(value) ||
+                      (/[A-Z]/.test(value) && /[!@#$%^&*]/.test(value)) ||
                       "Password must contain at least one uppercase letter, one number, and one special character",
                   })}
                 />
                 {errors.password && (
-                  <span className="text-red-300 text-sm mt-1">{errors.password.message}</span>
+                  <span className="text-red-300 text-sm mt-1">
+                    {errors.password.message}
+                  </span>
                 )}
               </div>
 
@@ -151,7 +156,9 @@ function Signup() {
                   })}
                 />
                 {errors.confirmPassword && (
-                  <span className="text-red-300 text-sm mt-1">{errors.confirmPassword.message}</span>
+                  <span className="text-red-300 text-sm mt-1">
+                    {errors.confirmPassword.message}
+                  </span>
                 )}
               </div>
             </div>
