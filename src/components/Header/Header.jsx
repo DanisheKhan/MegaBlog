@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Logo, LogoutBtn } from "../index";
 import { Menu, X } from "lucide-react";
+import { MorphingTextDemo } from "../MorphingTextDemo";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +27,9 @@ function Header() {
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="z-50">
-            <Logo className="text-purple-300 hover:text-purple-200 transition-colors" />
+            <div className="scale-35   transform-origin-left">
+              <MorphingTextDemo />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
