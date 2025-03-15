@@ -32,7 +32,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/"
+                  href="#"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   About
@@ -40,7 +40,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/"
+                  href="#"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   Services
@@ -48,7 +48,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/"
+                  href="#"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   Contact
@@ -73,10 +73,10 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://github.com/DanisheKhan"
                 className="text-gray-400 hover:text-white transition-colors"
+                target="_blank" rel="noopener noreferrer"
               >
-                <span className="sr-only">Facebook</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -89,8 +89,9 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/danish-khan-258386253?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                 className="text-gray-400 hover:text-white transition-colors"
+                target="_blank" rel="noopener noreferrer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -104,8 +105,9 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/danishekhan_01/"
                 className="text-gray-400 hover:text-white transition-colors"
+                target="_blank" rel="noopener noreferrer"
               >
                 <span className="sr-only">Instagram</span>
                 <svg

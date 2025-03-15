@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaUpload, FaPlus, FaSave } from "react-icons/fa";
+import { FaUpload, FaPlus, FaSave, FaSpinner } from "react-icons/fa";
 
 export default function PostForm({ post }) {
   const {
@@ -27,45 +27,62 @@ export default function PostForm({ post }) {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(5);
+
   const submit = async (data) => {
-    let dbPost;
-    if (post) {
-      const file =
-        data.image && data.image[0]
-          ? await appwriteService.uploadFile(data.image[0])
-          : null;
+    setIsSubmitting(true);
+    setTimeLeft(5);
 
-      if (file) {
-        appwriteService.deleteFile(post.featuredImage);
-      }
+    // Start countdown
+    const countdown = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
 
-      dbPost = await appwriteService.updatePost(post.$id, {
-        ...data,
-        featuredImage: file ? file.$id : undefined,
-      });
+    // Submit form after 5 seconds
+    setTimeout(async () => {
+      clearInterval(countdown); // Stop the countdown
+      setIsSubmitting(false);
 
-      if (dbPost) {
-        navigate(`/post/${dbPost.$id}`);
-      }
-    } else {
-      const file =
-        data.image && data.image[0]
-          ? await appwriteService.uploadFile(data.image[0])
-          : null;
+      let dbPost;
+      if (post) {
+        const file =
+          data.image && data.image[0]
+            ? await appwriteService.uploadFile(data.image[0])
+            : null;
 
-      if (file) {
-        const fileId = file.$id;
-        data.featuredImage = fileId;
-        dbPost = await appwriteService.createPost({
+        if (file) {
+          appwriteService.deleteFile(post.featuredImage);
+        }
+
+        dbPost = await appwriteService.updatePost(post.$id, {
           ...data,
-          userId: userData.$id,
+          featuredImage: file ? file.$id : undefined,
         });
 
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
         }
+      } else {
+        const file =
+          data.image && data.image[0]
+            ? await appwriteService.uploadFile(data.image[0])
+            : null;
+
+        if (file) {
+          const fileId = file.$id;
+          data.featuredImage = fileId;
+          dbPost = await appwriteService.createPost({
+            ...data,
+            userId: userData.$id,
+          });
+
+          if (dbPost) {
+            navigate(`/post/${dbPost.$id}`);
+          }
+        }
       }
-    }
+    }, 5000);
   };
 
   const slugTransform = useCallback((value) => {
@@ -245,9 +262,17 @@ export default function PostForm({ post }) {
         <div className="flex justify-center">
           <Button
             type="submit"
-            className="w-full md:w-1/2 py-3 md:py-3.5 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all gap-2 font-semibold text-sm md:text-base"
+            disabled={isSubmitting}
+            className={`w-full md:w-1/2 py-3 md:py-3.5 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all gap-2 font-semibold text-sm md:text-base ${
+              isSubmitting ? "opacity-75 cursor-not-allowed" : ""
+            }`}
           >
-            {post ? (
+            {isSubmitting ? (
+              <div className="flex items-center justify-center gap-1">
+                <FaSpinner className="w-4 h-4 md:w-5 md:h-5 animate-spin" />
+                {post ? `Updating in ${timeLeft}s` : `Creating in ${timeLeft}s`}
+              </div>
+            ) : post ? (
               <div className="flex items-center justify-center gap-1">
                 <FaSave className="w-4 h-4 md:w-5 md:h-5" />
                 Update Post
