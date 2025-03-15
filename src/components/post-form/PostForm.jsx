@@ -40,7 +40,7 @@ export default function PostForm({ post }) {
 
     setError(""); // Clear any previous errors
     setIsSubmitting(true);
-    setTimeLeft(5);
+    setTimeLeft(3);
 
     // Start countdown
     const countdown = setInterval(() => {
@@ -104,7 +104,7 @@ export default function PostForm({ post }) {
       } finally {
         setIsSubmitting(false);
       }
-    }, 5000);
+    }, 3000);
   };
 
   const slugTransform = useCallback((value) => {

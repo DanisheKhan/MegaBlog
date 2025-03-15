@@ -1,6 +1,7 @@
 import conf from '../conf/conf.js';
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
+
 export class Service{
     client = new Client();
     databases;
@@ -19,9 +20,10 @@ export class Service{
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,
+                ID.unique(), // Use a unique ID instead of slug
                 {
                     title,
+                    // slug, // Store slug as a field in the document
                     content,
                     featuredImage,
                     status,
@@ -30,6 +32,7 @@ export class Service{
             )
         } catch (error) {
             console.log("Appwrite service :: createPost :: error", error);
+            throw error; // Re-throw error for proper error handling
         }
     }
 
