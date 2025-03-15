@@ -14,10 +14,11 @@ body {
   background: #000;
   /* backdrop-filter: saturate(50%); */
   color: white;
+  box-sizing: border-box;
 }
 
 .glass {
-  background: rgba(255, 0, 0, 0.021);
+  background: #005b4159;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -29,7 +30,7 @@ body {
 }
 
 .postCard {
-  background: rgba(255, 0, 0, 0.021);
+  background: rgba(255, 1, 1, 0.021);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 2px solid rgba(255, 255, 255, 0.15);
