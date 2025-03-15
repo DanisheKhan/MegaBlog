@@ -29,8 +29,16 @@ export default function PostForm({ post }) {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [timeLeft, setTimeLeft] = useState(5);
+  const [error, setError] = useState(""); // Add error state
 
   const submit = async (data) => {
+    // Check if userData exists before proceeding
+    if (!userData || !userData.$id) {
+      setError("User data is not available. Please log out and log in again.");
+      return;
+    }
+
+    setError(""); // Clear any previous errors
     setIsSubmitting(true);
     setTimeLeft(5);
 
@@ -42,45 +50,59 @@ export default function PostForm({ post }) {
     // Submit form after 5 seconds
     setTimeout(async () => {
       clearInterval(countdown); // Stop the countdown
-      setIsSubmitting(false);
 
-      let dbPost;
-      if (post) {
-        const file =
-          data.image && data.image[0]
-            ? await appwriteService.uploadFile(data.image[0])
-            : null;
+      try {
+        let dbPost;
+        if (post) {
+          const file =
+            data.image && data.image[0]
+              ? await appwriteService.uploadFile(data.image[0])
+              : null;
 
-        if (file) {
-          appwriteService.deleteFile(post.featuredImage);
-        }
+          if (file) {
+            appwriteService.deleteFile(post.featuredImage);
+          }
 
-        dbPost = await appwriteService.updatePost(post.$id, {
-          ...data,
-          featuredImage: file ? file.$id : undefined,
-        });
-
-        if (dbPost) {
-          navigate(`/post/${dbPost.$id}`);
-        }
-      } else {
-        const file =
-          data.image && data.image[0]
-            ? await appwriteService.uploadFile(data.image[0])
-            : null;
-
-        if (file) {
-          const fileId = file.$id;
-          data.featuredImage = fileId;
-          dbPost = await appwriteService.createPost({
+          dbPost = await appwriteService.updatePost(post.$id, {
             ...data,
-            userId: userData.$id,
+            featuredImage: file ? file.$id : undefined,
           });
 
           if (dbPost) {
             navigate(`/post/${dbPost.$id}`);
           }
+        } else {
+          const file =
+            data.image && data.image[0]
+              ? await appwriteService.uploadFile(data.image[0])
+              : null;
+
+          if (file) {
+            const fileId = file.$id;
+            data.featuredImage = fileId;
+
+            // Safely access userData
+            if (userData && userData.$id) {
+              dbPost = await appwriteService.createPost({
+                ...data,
+                userId: userData.$id,
+              });
+
+              if (dbPost) {
+                navigate(`/post/${dbPost.$id}`);
+              }
+            } else {
+              setError(
+                "User data is not available. Please log out and log in again."
+              );
+            }
+          }
         }
+      } catch (e) {
+        console.error("Error submitting post:", e);
+        setError("An error occurred while saving the post. Please try again.");
+      } finally {
+        setIsSubmitting(false);
       }
     }, 5000);
   };
@@ -115,9 +137,18 @@ export default function PostForm({ post }) {
             {post ? "Edit Post" : "Create New Post"}
           </h1>
           <p className="text-purple-100/80 mt-2 text-sm md:text-base">
-            {post ? "Update your existing content" : "Share your ideas with the community"}
+            {post
+              ? "Update your existing content"
+              : "Share your ideas with the community"}
           </p>
         </div>
+
+        {/* Display error message */}
+        {error && (
+          <div className="mb-6 p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300 text-center">
+            {error}
+          </div>
+        )}
 
         {/* Form Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
@@ -144,7 +175,9 @@ export default function PostForm({ post }) {
                 })}
               />
               {errors.title && (
-                <span className="text-red-300 text-sm mt-1">{errors.title.message}</span>
+                <span className="text-red-300 text-sm mt-1">
+                  {errors.title.message}
+                </span>
               )}
             </div>
 
@@ -160,7 +193,8 @@ export default function PostForm({ post }) {
                   required: "Slug is required",
                   pattern: {
                     value: /^[a-z0-9-]+$/,
-                    message: "Slug can only contain lowercase letters, numbers, and hyphens",
+                    message:
+                      "Slug can only contain lowercase letters, numbers, and hyphens",
                   },
                 })}
                 onInput={(e) => {
@@ -171,7 +205,9 @@ export default function PostForm({ post }) {
                 disabled
               />
               {errors.slug && (
-                <span className="text-red-300 text-sm mt-1">{errors.slug.message}</span>
+                <span className="text-red-300 text-sm mt-1">
+                  {errors.slug.message}
+                </span>
               )}
             </div>
           </div>
@@ -195,11 +231,16 @@ export default function PostForm({ post }) {
                   required: !post && "Featured image is required",
                   validate: {
                     fileSize: (file) =>
-                      file[0]?.size <= 5 * 1024 * 1024 || "File size must be less than 5MB",
+                      file[0]?.size <= 5 * 1024 * 1024 ||
+                      "File size must be less than 5MB",
                     fileType: (file) =>
-                      ["image/png", "image/jpg", "image/jpeg", "image/gif"].includes(
-                        file[0]?.type
-                      ) || "Only PNG, JPG, JPEG, and GIF files are allowed",
+                      [
+                        "image/png",
+                        "image/jpg",
+                        "image/jpeg",
+                        "image/gif",
+                      ].includes(file[0]?.type) ||
+                      "Only PNG, JPG, JPEG, and GIF files are allowed",
                   },
                 })}
               />
@@ -209,13 +250,16 @@ export default function PostForm({ post }) {
                 <p>• Formats: PNG, JPG, JPEG, GIF</p>
                 {watch("image")?.[0] && (
                   <p className="text-green-300 mt-1">
-                    File selected: {(watch("image")[0].size / (1024 * 1024)).toFixed(2)}MB
+                    File selected:{" "}
+                    {(watch("image")[0].size / (1024 * 1024)).toFixed(2)}MB
                   </p>
                 )}
               </div>
             </label>
             {errors.image && (
-              <span className="text-red-300 text-sm mt-2 block">{errors.image.message}</span>
+              <span className="text-red-300 text-sm mt-2 block">
+                {errors.image.message}
+              </span>
             )}
           </div>
         </div>
@@ -253,7 +297,9 @@ export default function PostForm({ post }) {
               }}
             />
             {errors.content && (
-              <span className="text-red-300 text-sm mt-2 block">{errors.content.message}</span>
+              <span className="text-red-300 text-sm mt-2 block">
+                {errors.content.message}
+              </span>
             )}
           </div>
         </div>
