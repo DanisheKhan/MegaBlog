@@ -1,72 +1,101 @@
-import React from "react";
-import { useState } from "react";
-import { Container, Logo, LogoutBtn } from "../index";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, Logo, LogoutBtn } from "../index";
+import { Menu, X } from "lucide-react";
 
 function Header() {
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
 
   const navItems = [
-    {
-      name: "Home",
-      slug: "/",
-      active: true,
-    },
-    {
-      name: "Login",
-      slug: "/login",
-      active: !authStatus,
-    },
-    {
-      name: "Signup",
-      slug: "/signup",
-      active: !authStatus,
-    },
-    {
-      name: "All Posts",
-      slug: "/all-posts",
-      active: authStatus,
-    },
-    {
-      name: "Add Post",
-      slug: "/add-post",
-      active: authStatus,
-    },
+    { name: "Home", slug: "/", active: true },
+    { name: "Login", slug: "/login", active: !authStatus },
+    { name: "Signup", slug: "/signup", active: !authStatus },
+    { name: "All Posts", slug: "/all-posts", active: authStatus },
+    { name: "Add Post", slug: "/add-post", active: authStatus },
   ];
 
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
-    <header className="fixed top-0 left-0 py-5 font-medium glass flex items-center h-20 w-full z-50 ">
+    <header className="fixed top-0 w-full z-50 bg-transparent backdrop-blur-sm">
       <Container>
-        <nav className="flex items-center h-full">
-          <div className="">
-            <Link to="/">
-              <Logo />
-            </Link>
-          </div>
-          <ul className="flex ml-auto box-border">
-            {navItems.map((item) =>
-              item.active ? (
-                <li key={item.name}>
-                  <button
-                    onClick={() => navigate(item.slug)}
-                    className="inline-block px-8 py-2 duration-200 cursor-pointer rounded-full  transition hover:border-b "
-                  >
-                    {item.name}
-                  </button>
+        <nav className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link to="/" className="z-50">
+            <Logo />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-4">
+            <ul className="flex items-center gap-4">
+              {navItems.map((item) =>
+                item.active ? (
+                  <li key={item.name}>
+                    <button
+                      onClick={() => {
+                        navigate(item.slug);
+                        closeMenu();
+                      }}
+                      className="px-4 py-2 text-sm font-medium text-white hover:text-indigo-200 transition-colors rounded-lg"
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                ) : null
+              )}
+              {authStatus && (
+                <li>
+                  <LogoutBtn className="text-white hover:text-indigo-200 ml-4" />
                 </li>
-              ) : null
+              )}
+            </ul>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden p-2 rounded-lg z-50 text-white hover:text-indigo-200"
+          >
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
             )}
-            {authStatus && (
-              <li>
-                <LogoutBtn />
-              </li>
-            )}
-          </ul>
-          
+          </button>
+
+          {/* Mobile Menu */}
+          <div
+            className={`absolute top-16 right-0 w-full bg-black/80 backdrop-blur-lg md:hidden transition-all duration-300 ${
+              isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}
+          >
+            <ul className="flex flex-col items-center gap-4 py-4">
+              {navItems.map((item) =>
+                item.active ? (
+                  <li key={item.name}>
+                    <button
+                      onClick={() => {
+                        navigate(item.slug);
+                        closeMenu();
+                      }}
+                      className="text-lg font-medium text-white hover:text-indigo-200 py-2 px-4 rounded-lg transition-colors"
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                ) : null
+              )}
+              {authStatus && (
+                <li>
+                  <LogoutBtn className="text-white hover:text-indigo-200" />
+                </li>
+              )}
+            </ul>
+          </div>
         </nav>
       </Container>
     </header>
