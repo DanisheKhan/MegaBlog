@@ -186,6 +186,16 @@ export default function PostForm({ post }) {
                   },
                 })}
               />
+              {/* Upload requirements alert */}
+              <div className="mt-3 text-xs text-purple-100/80 bg-purple-900/30 p-2 rounded-lg">
+                <p>• Max file size: 5MB</p>
+                <p>• Formats: PNG, JPG, JPEG, GIF</p>
+                {watch("image")?.[0] && (
+                  <p className="text-green-300 mt-1">
+                    File selected: {(watch("image")[0].size / (1024 * 1024)).toFixed(2)}MB
+                  </p>
+                )}
+              </div>
             </label>
             {errors.image && (
               <span className="text-red-300 text-sm mt-2 block">{errors.image.message}</span>

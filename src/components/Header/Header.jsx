@@ -72,33 +72,40 @@ function Header() {
 
           {/* Mobile Menu */}
           <div
-            className={`fixed inset-0 bg-black/80 backdrop-blur-lg md:hidden transition-opacity duration-300 ${
+            className={`fixed inset-0  backdrop-blur-lg md:hidden transition-opacity duration-300 z-40 ${
               isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
             }`}
+            onClick={closeMenu} // Close menu when clicking outside
           >
-            <div className="flex flex-col items-center justify-center h-full gap-6">
-              <ul className="flex flex-col items-center gap-4">
-                {navItems.map((item) =>
-                  item.active ? (
-                    <li key={item.name}>
-                      <button
-                        onClick={() => {
-                          navigate(item.slug);
-                          closeMenu();
-                        }}
-                        className="text-lg font-medium text-white hover:text-purple-200 py-2 px-4 rounded-lg transition-colors"
-                      >
-                        {item.name}
-                      </button>
+            {/* Menu Content */}
+            <div
+              className="fixed inset-0 flex flex-col items-center justify-center h-full  "
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the menu
+            >
+              <div className=" bg-black/50 rounded-xl border   border-white/10 p-4 absolute top-[67px]  shadow-lg w-full max-w-sm ">
+                <ul className="flex flex-col items-center gap-4">
+                  {navItems.map((item) =>
+                    item.active ? (
+                      <li key={item.name}>
+                        <button
+                          onClick={() => {
+                            navigate(item.slug);
+                            closeMenu();
+                          }}
+                          className="text-lg font-medium text-white hover:text-purple-200 hover:bg-white/10 py-2 px-6 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-purple-200"
+                        >
+                          {item.name}
+                        </button>
+                      </li>
+                    ) : null
+                  )}
+                  {authStatus && (
+                    <li>
+                      <LogoutBtn className="text-lg font-medium text-white hover:text-purple-200 hover:bg-white/10 py-2 px-6 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-purple-200" />
                     </li>
-                  ) : null
-                )}
-                {authStatus && (
-                  <li>
-                    <LogoutBtn className="text-white hover:text-purple-200" />
-                  </li>
-                )}
-              </ul>
+                  )}
+                </ul>
+              </div>
             </div>
           </div>
         </nav>
