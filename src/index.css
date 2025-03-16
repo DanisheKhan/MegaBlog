@@ -4,6 +4,19 @@
 /* ---break---  */
 @custom-variant dark (&:is(.dark *));
 
+@import "tailwindcss";
+/* ---break---  */
+@plugin "tailwindcss-animate";
+/* ---break---  */
+@custom-variant dark (&:is(.dark *));
+
+/* Fix for iOS Safari fixed background issues */
+html {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 body {
   overflow-x: hidden;
   color: white;
@@ -12,14 +25,18 @@ body {
   padding: 0;
   min-height: 100vh;
   width: 100%;
+  /* Background reset - we'll use pseudo-element for background */
+  background: transparent;
 }
 
-/* Create a fixed background layer that stays in place */
+/* Mobile-friendly fixed background that won't shift */
 body::before {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   height: 100%;
   width: 100%;
   z-index: -1;
@@ -42,10 +59,38 @@ body::before {
     hsla(297, 91%, 22%, 1) 54%,
     hsla(336, 69%, 35%, 1) 100%
   );
-  background-size: cover;
-  transform: translateZ(0); /* Hardware acceleration */
-  will-change: transform; /* Optimization hint */
+  background-size: 100% 100%;
+  background-attachment: fixed;
+
+  /* Enhanced hardware acceleration for mobile */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+
+  /* GPU optimization */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  /* Performance hint to browser */
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  will-change: transform;
 }
+
+/* Add a higher-priority z-index wrapper around your content if needed */
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Rest of your existing CSS... */
+:root {
+  --background: oklch(1 0 0);
+  /* ...existing CSS */
+}
+
 
 :root {
   --background: oklch(1 0 0);
