@@ -26,7 +26,7 @@ function App() {
 
   return !loading ? (
     <>
-    <Bg className=" -z-10 fixed top-0 left-0 " />
+    {/* <Bg className=" -z-10 fixed top-0 left-0 " /> */}
       <div className="min-h-screen flex flex-col absolute  top-0 left-0 w-full h-full">
         <Header  />
         <main className="flex-grow mt-20">

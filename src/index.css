@@ -6,14 +6,37 @@
 
 body {
   overflow-x: hidden;
-  /* background-image: url("../Images/bg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* background: linear-gradient(to right, #312e81, #4a044e, #831843); */
+  background: hsla(242, 48%, 44%, 1);
+
+  background: linear-gradient(
+    315deg,
+    hsla(242, 48%, 44%, 1) 0%,
+    hsla(297, 91%, 22%, 1) 54%,
+    hsla(336, 69%, 35%, 1) 100%
+  ) no-repeat;
+
+  background: -moz-linear-gradient(
+    315deg,
+    hsla(242, 48%, 44%, 1) 0%,
+    hsla(297, 91%, 22%, 1) 54%,
+    hsla(336, 69%, 35%, 1) 100%
+  ) no-repeat;
+
+  background: -webkit-linear-gradient(
+    315deg,
+    hsla(242, 48%, 44%, 1) 0%,
+    hsla(297, 91%, 22%, 1) 54%,
+    hsla(336, 69%, 35%, 1) 100%
+  ) no-repeat;
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#3E3BA7", endColorstr="#65056A", GradientType=1 );
+
   background-attachment: fixed;
-  background-position: center; */
-  /* background: #000; */
-  /* backdrop-filter: saturate(50%); */
-  color: white;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  color : white;
 }
 
 .glass {
@@ -28,9 +51,7 @@ body {
   text-align: center;
 }
 
-
-
-.bb{
+.bb {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -160,4 +181,3 @@ body {
     @apply bg-background text-foreground;
   }
 }
-

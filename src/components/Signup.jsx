@@ -92,7 +92,7 @@ function Signup() {
                   label="Email Address"
                   id="email"
                   type="email"
-                  placeholder="hello@example.com"
+                  placeholder="danish@example.com"
                   className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${
                     errors.email ? "border-red-400/50" : ""
                   }`}

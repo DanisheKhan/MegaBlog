@@ -66,7 +66,7 @@ function Login() {
                   label="Email Address"
                   id="email"
                   type="email"
-                  placeholder="hello@example.com"
+                  placeholder="danish@example.com"
                   className={`w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 placeholder:text-purple-100/50 text-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-300/50 transition-all ${
                     errors.email ? "border-red-400/50" : ""
                   }`}
