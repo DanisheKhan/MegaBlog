@@ -122,7 +122,7 @@ export class Service {
     return this.bucket.getFilePreview(
       conf.appwriteBucketId,
       fileId,
-      1200, // width, optimized for most screens
+      800, // width, optimized for most screens
       0, // height, ignored when 0
       "center", // crop center
       "50" // slightly lower quality for better performance
