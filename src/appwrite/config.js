@@ -122,10 +122,17 @@ export class Service {
     return this.bucket.getFilePreview(
       conf.appwriteBucketId,
       fileId,
-      800, // width, optimized for most screens
+      1200, // width, optimized for most screens
       0, // height, ignored when 0
       "center", // crop center
-      "50" // slightly lower quality for better performance
+      "80", // slightly lower quality for better performance
+      5, // border width
+      "CDCA30", // border color
+      15, // border radius
+      1, // full opacity
+      0, // no rotation
+      "FFFFFF", // background color
+      "webp", // output webp format for better performance
     );
   }
 }
