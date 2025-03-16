@@ -27,9 +27,7 @@ function Header() {
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="z-50">
-            <div className="scale-35   transform-origin-left">
-              <MorphingTextDemo />
-            </div>
+            <h1 className="text-2xl font-medium">Danish Khan</h1>
           </Link>
 
           {/* Desktop Navigation */}
