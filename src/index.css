@@ -10,7 +10,11 @@
 /* ---break---  */
 @custom-variant dark (&:is(.dark *));
 
-/* Fix for iOS Safari fixed background issues */
+html {
+  scroll-behavior: smooth;
+}
+
+
 body{
   overflow-x: hidden;
   color: white;

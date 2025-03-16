@@ -126,9 +126,9 @@ export class Service {
       0, // height, ignored when 0
       "center", // crop center
       "80", // slightly lower quality for better performance
-      5, // border width
-      "CDCA30", // border color
-      15, // border radius
+      0, // border width
+      "ffffff", // border color
+      0, // border radius
       1, // full opacity
       0, // no rotation
       "FFFFFF", // background color
