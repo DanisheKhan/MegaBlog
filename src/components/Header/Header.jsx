@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -10,21 +10,48 @@ function Header() {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
 
-  const navItems = [
-    { name: "Home", slug: "/", active: true },
-    { name: "Login", slug: "/login", active: !authStatus },
-    { name: "Signup", slug: "/signup", active: !authStatus },
-    { name: "All Posts", slug: "/all-posts", active: authStatus },
-    { name: "Add Post", slug: "/add-post", active: authStatus },
-  ];
+  // Memoize navItems to avoid recalculating on every render
+  const navItems = useMemo(
+    () => [
+      { name: "Home", slug: "/", active: true },
+      { name: "Login", slug: "/login", active: !authStatus },
+      { name: "Signup", slug: "/signup", active: !authStatus },
+      { name: "All Posts", slug: "/all-posts", active: authStatus },
+      { name: "Add Post", slug: "/add-post", active: authStatus },
+    ],
+    [authStatus]
+  );
 
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
-  const closeMenu = () => setIsMenuOpen(false);
+  // Memoize toggleMenu and closeMenu to avoid recreating functions on every render
+  const toggleMenu = useCallback(() => setIsMenuOpen((prev) => !prev), []);
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
-  const handleNavigation = (slug) => {
-    navigate(slug);
-    closeMenu();
-  };
+  // Memoize handleNavigation to avoid recreating the function on every render
+  const handleNavigation = useCallback(
+    (slug) => {
+      navigate(slug);
+      closeMenu();
+    },
+    [navigate, closeMenu]
+  );
+
+  // Render navigation items
+  const renderNavItems = (isMobile = false) =>
+    navItems.map(
+      (item) =>
+        item.active && (
+          <li key={item.name}>
+            <button
+              onClick={() => handleNavigation(item.slug)}
+              className={`${
+                isMobile ? "text-lg py-2 px-6" : "text-sm px-4 py-2"
+              } font-medium text-white hover:text-purple-200 hover:bg-white/10 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-200`}
+            >
+              {item.name}
+            </button>
+          </li>
+        )
+    );
 
   return (
     <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-sm">
@@ -32,26 +59,14 @@ function Header() {
         {/* Logo */}
         <Link to="/" className="z-50">
           <div className="scale-40">
-            <MorphingTextDemo  />
+            <MorphingTextDemo />
           </div>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-4">
           <ul className="flex items-center gap-2">
-            {navItems.map(
-              (item) =>
-                item.active && (
-                  <li key={item.name}>
-                    <button
-                      onClick={() => handleNavigation(item.slug)}
-                      className="px-4 py-2 text-sm font-medium text-white hover:text-purple-200 hover:bg-white/10 rounded-lg transition-all duration-200"
-                    >
-                      {item.name}
-                    </button>
-                  </li>
-                )
-            )}
+            {renderNavItems()}
             {authStatus && (
               <li>
                 <LogoutBtn className="text-white hover:text-purple-200 ml-4" />
@@ -84,19 +99,7 @@ function Header() {
             >
               <div className="bg-black/50 rounded-xl border border-white/10 p-4 absolute top-[67px] shadow-lg w-full max-w-sm">
                 <ul className="flex flex-col items-center gap-4">
-                  {navItems.map(
-                    (item) =>
-                      item.active && (
-                        <li key={item.name}>
-                          <button
-                            onClick={() => handleNavigation(item.slug)}
-                            className="text-lg font-medium text-white hover:text-purple-200 hover:bg-white/10 py-2 px-6 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-purple-200"
-                          >
-                            {item.name}
-                          </button>
-                        </li>
-                      )
-                  )}
+                  {renderNavItems(true)}
                   {authStatus && (
                     <li>
                       <LogoutBtn className="text-lg font-medium text-white hover:text-purple-200 hover:bg-white/10 py-2 px-6 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-purple-200" />
@@ -112,4 +115,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default React.memo(Header);
