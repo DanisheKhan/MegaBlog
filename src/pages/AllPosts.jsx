@@ -5,25 +5,40 @@ import { FaSpinner } from 'react-icons/fa'; // Import spinner icon
 
 function AllPosts() {
     const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true); // Loading state
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null); // State for error handling
 
     useEffect(() => {
-        setLoading(true); // Set loading to true when fetching data
-        appwriteService.getPosts([]).then((posts) => {
-            if (posts) {
-                setPosts(posts.documents);
+        let isMounted = true; // Track component mount state
+
+        const fetchPosts = async () => {
+            setLoading(true);
+            setError(null);
+
+            try {
+                const response = await appwriteService.getPosts(null); // Fetch all posts
+                if (isMounted) {
+                    setPosts(response?.documents || []);
+                }
+            } catch (err) {
+                console.error("Error fetching posts:", err);
+                if (isMounted) setError("Failed to load posts. Please try again later.");
+            } finally {
+                if (isMounted) setLoading(false);
             }
-        }).catch((error) => {
-            console.error("Error fetching posts:", error);
-        }).finally(() => {
-            setLoading(false); // Set loading to false after data is fetched
-        });
+        };
+
+        fetchPosts();
+
+        return () => {
+            isMounted = false; // Cleanup function to prevent setting state on unmounted component
+        };
     }, []);
 
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <FaSpinner className="w-12 h-12 text-purple-500 animate-spin" /> {/* Loading spinner */}
+                <FaSpinner className="w-12 h-12 text-purple-500 animate-spin" />
             </div>
         );
     }
@@ -35,17 +50,18 @@ function AllPosts() {
                     All Posts
                 </h1>
 
-                {posts.length === 0 ? (
+                {error ? (
+                    <div className='text-center text-red-400 py-12'>
+                        <p className='text-xl'>{error}</p>
+                    </div>
+                ) : posts.length === 0 ? (
                     <div className='text-center text-purple-100/80 py-12'>
                         <p className='text-xl'>No posts to display</p>
                     </div>
                 ) : (
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                         {posts.map((post) => (
-                            <div
-                                key={post.$id}
-                                className='sm:transition-transform sm:duration-300 sm:hover:scale-105'
-                            >
+                            <div key={post.$id} className='sm:transition-transform sm:duration-300 sm:hover:scale-105'>
                                 <PostCard {...post} />
                             </div>
                         ))}
