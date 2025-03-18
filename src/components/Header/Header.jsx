@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { LogoutBtn } from "../index";
+import { MorphingTextDemo } from "../MorphingTextDemo";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,23 +18,26 @@ function Header() {
     { name: "Add Post", slug: "/add-post", active: authStatus },
   ];
 
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
-  const closeMenu = () => setIsMenuOpen(false);
+  const toggleMenu = useCallback(() => setIsMenuOpen((prev) => !prev), []);
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
-  const handleNavigation = (slug) => {
-    navigate(slug);
-    closeMenu();
-  };
+  const handleNavigation = useCallback(
+    (slug) => {
+      navigate(slug);
+      closeMenu();
+    },
+    [navigate, closeMenu]
+  );
 
   return (
     <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-sm">
       <nav className="flex items-center justify-between h-16 container mx-auto px-4">
-        {/* Logo */}
         <Link to="/" className="z-50">
-          <h1 className="text-2xl font-medium">Danish Khan</h1>
+        <div  className="scale-40">
+          {/* <MorphingTextDemo className="h-4" /> */}
+        </div>
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-4">
           <ul className="flex items-center gap-2">
             {navItems.map(
@@ -42,7 +46,7 @@ function Header() {
                   <li key={item.name}>
                     <button
                       onClick={() => handleNavigation(item.slug)}
-                      className="px-4 py-2 text-sm font-medium text-white hover:text-purple-200 hover:bg-white/10 rounded-lg transition-all duration-200"
+                      className="px-4 py-2 text-sm font-medium text-white md:hover:text-purple-200 md:hover:bg-white/10 rounded-lg transition-all md:duration-200"
                     >
                       {item.name}
                     </button>
@@ -51,16 +55,16 @@ function Header() {
             )}
             {authStatus && (
               <li>
-                <LogoutBtn className="text-white hover:text-purple-200 ml-4" />
+                <LogoutBtn className="text-white md:hover:text-purple-200 ml-4" />
               </li>
             )}
           </ul>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="md:hidden p-2 rounded-lg z-50 text-white hover:text-purple-200 hover:bg-white/10 transition-all"
+          className="md:hidden p-2 rounded-lg z-50 text-white"
+          aria-label="Toggle Menu"
         >
           {isMenuOpen ? (
             <X className="w-6 h-6" />
@@ -69,7 +73,6 @@ function Header() {
           )}
         </button>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div
             className="fixed inset-0 backdrop-blur-lg md:hidden z-40"
@@ -87,7 +90,7 @@ function Header() {
                         <li key={item.name}>
                           <button
                             onClick={() => handleNavigation(item.slug)}
-                            className="text-lg font-medium text-white hover:text-purple-200 hover:bg-white/10 py-2 px-6 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-purple-200"
+                            className="text-lg font-medium text-white py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-200"
                           >
                             {item.name}
                           </button>
@@ -96,7 +99,7 @@ function Header() {
                   )}
                   {authStatus && (
                     <li>
-                      <LogoutBtn className="text-lg font-medium text-white hover:text-purple-200 hover:bg-white/10 py-2 px-6 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-purple-200" />
+                      <LogoutBtn className="text-lg font-medium text-white py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-200" />
                     </li>
                   )}
                 </ul>
