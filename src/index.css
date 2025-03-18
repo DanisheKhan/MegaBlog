@@ -22,7 +22,10 @@ body{
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
+<<<<<<< HEAD
   /* background: #000; */
+=======
+>>>>>>> d234611ee274f84b64e367e48af1335ff9f87a15
 }
 
 :root {
