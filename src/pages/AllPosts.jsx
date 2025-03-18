@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Container, PostCard } from '../components';
 import appwriteService from "../appwrite/config";
-import { FaSpinner } from 'react-icons/fa'; // Import spinner icon
+import { FaSpinner } from 'react-icons/fa';
 
 function AllPosts() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null); // State for error handling
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        let isMounted = true; // Track component mount state
+        let isMounted = true;
 
         const fetchPosts = async () => {
             setLoading(true);
             setError(null);
 
             try {
-                const response = await appwriteService.getPosts(null); // Fetch all posts
+                const response = await appwriteService.getPosts(null);
                 if (isMounted) {
                     setPosts(response?.documents || []);
                 }
@@ -31,14 +31,14 @@ function AllPosts() {
         fetchPosts();
 
         return () => {
-            isMounted = false; // Cleanup function to prevent setting state on unmounted component
+            isMounted = false;
         };
     }, []);
 
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <FaSpinner className="w-12 h-12 text-purple-500 animate-spin" />
+                <FaSpinner className="w-12 h-12 text-purple-500" />
             </div>
         );
     }
@@ -61,7 +61,7 @@ function AllPosts() {
                 ) : (
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                         {posts.map((post) => (
-                            <div key={post.$id} className='sm:transition-transform sm:duration-300 sm:hover:scale-105'>
+                            <div key={post.$id}>
                                 <PostCard {...post} />
                             </div>
                         ))}
