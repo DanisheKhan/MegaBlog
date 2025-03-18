@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function PostCard({ $id, title, featuredImage }) {
   return (
     <Link to={`/post/${$id}`}>
-      <div className="group relative overflow-hidden rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-900/20 h-full">
+      <div className="group relative overflow-hidden rounded-2xl transition-all duration-300 hover:scale-[1.02] h-full">
         <div className="glass-container bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-4 h-full min-h-[300px] flex flex-col">
           {/* Image Container - Reduced Height */}
           <div className="relative overflow-hidden rounded-xl mb-4 aspect-[4/3] flex-grow">
@@ -27,7 +27,7 @@ function PostCard({ $id, title, featuredImage }) {
           </div>
 
           {/* Hover Glow Effect */}
-          <div className="absolute inset-0 rounded-2xl pointer-events-none border border-white/10 mix-blend-overlay group-hover:border-white/20 transition-all duration-300" />
+          {/* <div className="absolute inset-0 rounded-2xl pointer-events-none border border-white/10 mix-blend-overlay group-hover:border-white/20 transition-all duration-300" /> */}
         </div>
       </div>
     </Link>
