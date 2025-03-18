@@ -34,7 +34,7 @@ function Header() {
       <nav className="flex items-center justify-between h-16 container mx-auto px-4">
         <Link to="/" className="z-50">
         <div  className="scale-40">
-          {/* <MorphingTextDemo className="h-4" /> */}
+          <MorphingTextDemo className="h-4" />
         </div>
         </Link>
 
