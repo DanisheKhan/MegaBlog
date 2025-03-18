@@ -6,7 +6,7 @@ import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { FaFileAlt } from 'react-icons/fa';
+import { FaFileAlt } from "react-icons/fa";
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -34,18 +34,18 @@ export default function Post() {
   };
 
   return post ? (
-    <div className="min-h-screen py-8 md:py-12">
+    <div className="max-w-4xl mx-auto px-4">
       <Container>
         <div className="glass-container bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl shadow-purple-900/20">
           {/* Image Section */}
-          <div className="relative group mb-6 md:mb-8 overflow-hidden rounded-2xl aspect-video">
+          <div className="relative group mb-6 md:mb-8 overflow-hidden rounded-2xl max-w-[25rem] sm:w-[80%] md:w-[70%] h-[15rem] sm:h-[20rem]  mx-auto">
             <img
               src={appwriteService.getFilePreview(post.featuredImage)}
               alt={post.title}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
-
             />
+            {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
           </div>
 
@@ -58,9 +58,7 @@ export default function Post() {
 
             {/* Content */}
             <div className="prose prose-invert max-w-none glass-panel p-2 sm:p-3 md:p-4 lg:p-5 rounded-xl border border-white/10 backdrop-blur-sm">
-              <div>
-               
-              </div>
+              <div>{/* Content goes here */}</div>
               {parse(post.content)}
             </div>
 

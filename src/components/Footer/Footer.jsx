@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../Logo";
 
 const Footer = () => {
   return (
@@ -23,12 +22,12 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
                 <a
@@ -75,7 +74,8 @@ const Footer = () => {
               <a
                 href="https://github.com/DanisheKhan"
                 className="text-gray-400 hover:text-white transition-colors"
-                target="_blank" rel="noopener noreferrer"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +91,8 @@ const Footer = () => {
               <a
                 href="https://www.linkedin.com/in/danish-khan-258386253?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                 className="text-gray-400 hover:text-white transition-colors"
-                target="_blank" rel="noopener noreferrer"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +108,8 @@ const Footer = () => {
               <a
                 href="https://www.instagram.com/danishekhan_01/"
                 className="text-gray-400 hover:text-white transition-colors"
-                target="_blank" rel="noopener noreferrer"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <span className="sr-only">Instagram</span>
                 <svg
@@ -128,7 +130,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gray-700 mt-8 py-8">
           <p className="text-center text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} Your{" "}
+            &copy; {new Date().getFullYear()}{" "}
             <span className="font-bold">Danish Khan</span>. All rights reserved.
           </p>
         </div>

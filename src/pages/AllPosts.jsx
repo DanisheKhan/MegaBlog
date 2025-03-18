@@ -44,7 +44,7 @@ function AllPosts() {
                         {posts.map((post) => (
                             <div
                                 key={post.$id}
-                                className='transition-transform duration-300 hover:scale-105'
+                                className='sm:transition-transform sm:duration-300 sm:hover:scale-105'
                             >
                                 <PostCard {...post} />
                             </div>

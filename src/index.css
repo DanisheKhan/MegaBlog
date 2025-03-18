@@ -21,6 +21,7 @@ body{
   background-image: url("../Images/bg.png");
   background-size: cover;
   background-attachment: fixed;
+  background-position: center;
 }
 
 :root {
