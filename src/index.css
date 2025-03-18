@@ -18,10 +18,11 @@ html {
 body{
   overflow-x: hidden;
   color: white;
-  background-image: url("../Images/bg.png");
+  /* background-image: url("../Images/bg.png");
   background-size: cover;
   background-attachment: fixed;
-  background-position: center;
+  background-position: center; */
+  background: #000;
 }
 
 :root {
