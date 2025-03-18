@@ -25,6 +25,7 @@ function App() {
 
   return !loading ? (
     <>
+    <div className="bg" />
       <div className="min-h-screen flex flex-col absolute  top-0 left-0 w-full h-full">
         <Header  />
         <main className="flex-grow mt-20">
