@@ -1,117 +1,66 @@
-<<<<<<< HEAD
-import React, { useState, useCallback, useMemo } from "react";
-=======
-import React, { useState, useCallback } from "react";
->>>>>>> d234611ee274f84b64e367e48af1335ff9f87a15
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { LogoutBtn } from "../index";
-import { MorphingTextDemo } from "../MorphingTextDemo";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
 
-  // Memoize navItems to avoid recalculating on every render
-  const navItems = useMemo(
-    () => [
-      { name: "Home", slug: "/", active: true },
-      { name: "Login", slug: "/login", active: !authStatus },
-      { name: "Signup", slug: "/signup", active: !authStatus },
-      { name: "All Posts", slug: "/all-posts", active: authStatus },
-      { name: "Add Post", slug: "/add-post", active: authStatus },
-    ],
-    [authStatus]
-  );
+  const navItems = [
+    { name: "Home", slug: "/", active: true },
+    { name: "Login", slug: "/login", active: !authStatus },
+    { name: "Signup", slug: "/signup", active: !authStatus },
+    { name: "All Posts", slug: "/all-posts", active: authStatus },
+    { name: "Add Post", slug: "/add-post", active: authStatus },
+  ];
 
-<<<<<<< HEAD
-  // Memoize toggleMenu and closeMenu to avoid recreating functions on every render
-  const toggleMenu = useCallback(() => setIsMenuOpen((prev) => !prev), []);
-  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const closeMenu = () => setIsMenuOpen(false);
 
-  // Memoize handleNavigation to avoid recreating the function on every render
-=======
-  const toggleMenu = useCallback(() => setIsMenuOpen((prev) => !prev), []);
-  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
-
->>>>>>> d234611ee274f84b64e367e48af1335ff9f87a15
-  const handleNavigation = useCallback(
-    (slug) => {
-      navigate(slug);
-      closeMenu();
-    },
-    [navigate, closeMenu]
-  );
-<<<<<<< HEAD
-
-  // Render navigation items
-  const renderNavItems = (isMobile = false) =>
-    navItems.map(
-      (item) =>
-        item.active && (
-          <li key={item.name}>
-            <button
-              onClick={() => handleNavigation(item.slug)}
-              className={`${
-                isMobile ? "text-lg py-2 px-6" : "text-sm px-4 py-2"
-              } font-medium text-white hover:text-purple-200 hover:bg-white/10 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-200`}
-            >
-              {item.name}
-            </button>
-          </li>
-        )
-    );
-=======
->>>>>>> d234611ee274f84b64e367e48af1335ff9f87a15
+  const handleNavigation = (slug) => {
+    navigate(slug);
+    closeMenu();
+  };
 
   return (
     <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-sm">
       <nav className="flex items-center justify-between h-16 container mx-auto px-4">
+        {/* Logo */}
         <Link to="/" className="z-50">
-<<<<<<< HEAD
-          <div className="scale-40">
-            <MorphingTextDemo />
-          </div>
-=======
-        <div  className="scale-40">
-          <MorphingTextDemo className="h-4" />
-        </div>
->>>>>>> d234611ee274f84b64e367e48af1335ff9f87a15
+          <h1 className="text-2xl font-medium">Danish Khan</h1>
         </Link>
 
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-4">
           <ul className="flex items-center gap-2">
-<<<<<<< HEAD
-            {renderNavItems()}
-=======
             {navItems.map(
               (item) =>
                 item.active && (
                   <li key={item.name}>
                     <button
                       onClick={() => handleNavigation(item.slug)}
-                      className="px-4 py-2 text-sm font-medium text-white md:hover:text-purple-200 md:hover:bg-white/10 rounded-lg transition-all md:duration-200"
+                      className="px-4 py-2 text-sm font-medium text-white hover:text-purple-200 hover:bg-white/10 rounded-lg transition-all duration-200"
                     >
                       {item.name}
                     </button>
                   </li>
                 )
             )}
->>>>>>> d234611ee274f84b64e367e48af1335ff9f87a15
             {authStatus && (
               <li>
-                <LogoutBtn className="text-white md:hover:text-purple-200 ml-4" />
+                <LogoutBtn className="text-white hover:text-purple-200 ml-4" />
               </li>
             )}
           </ul>
         </div>
 
+        {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="md:hidden p-2 rounded-lg z-50 text-white"
-          aria-label="Toggle Menu"
+          className="md:hidden p-2 rounded-lg z-50 text-white hover:text-purple-200 hover:bg-white/10 transition-all"
         >
           {isMenuOpen ? (
             <X className="w-6 h-6" />
@@ -120,6 +69,7 @@ function Header() {
           )}
         </button>
 
+        {/* Mobile Menu */}
         {isMenuOpen && (
           <div
             className="fixed inset-0 backdrop-blur-lg md:hidden z-40"
@@ -131,36 +81,32 @@ function Header() {
             >
               <div className="bg-black/50 rounded-xl border border-white/10 p-4 absolute top-[67px] shadow-lg w-full max-w-sm">
                 <ul className="flex flex-col items-center gap-4">
-<<<<<<< HEAD
-                  {renderNavItems(true)}
-=======
                   {navItems.map(
                     (item) =>
                       item.active && (
                         <li key={item.name}>
                           <button
                             onClick={() => handleNavigation(item.slug)}
-                            className="text-lg font-medium text-white py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-200"
+                            className="text-lg font-medium text-white hover:text-purple-200 hover:bg-white/10 py-2 px-6 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-purple-200"
                           >
                             {item.name}
                           </button>
                         </li>
                       )
                   )}
->>>>>>> d234611ee274f84b64e367e48af1335ff9f87a15
                   {authStatus && (
                     <li>
-                      <LogoutBtn className="text-lg font-medium text-white py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-200" />
+                      <LogoutBtn className="text-lg font-medium text-white hover:text-purple-200 hover:bg-white/10 py-2 px-6 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-purple-200" />
                     </li>
                   )}
                 </ul>
               </div>
             </div>
           </div>
-        )} 
+        )}
       </nav>
     </header>
   );
 }
 
-export default React.memo(Header);
+export default Header;
