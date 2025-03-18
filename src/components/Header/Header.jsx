@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { LogoutBtn } from "../index";
+import { MorphingTextDemo } from "../MorphingTextDemo";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +31,9 @@ function Header() {
       <nav className="flex items-center justify-between h-16 container mx-auto px-4">
         {/* Logo */}
         <Link to="/" className="z-50">
-          <h1 className="text-2xl font-medium">Danish Khan</h1>
+          <div className="scale-40">
+            <MorphingTextDemo  />
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
