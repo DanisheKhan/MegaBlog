@@ -34,10 +34,10 @@ function Signup() {
 
   return (
     <div className="mt-5 flex items-center justify-center p-4">
-      <div className="glass-container relative group p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl shadow-black/30 hover:shadow-purple-500/20 transition-all duration-500 max-w-md w-full">
+      <div className="glass-container relative group p-8 rounded-3xl border border-white/10 bg-white/5  shadow-2xl shadow-black/30 hover:shadow-purple-500/20 transition-all duration-500 max-w-md w-full">
         {/* Decorative Elements */}
         <div className="absolute inset-0 rounded-3xl border border-white/5 bg-gradient-to-br from-white/10 to-transparent" />
-        <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg flex items-center justify-center">
+        <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-white/5 border border-white/10  flex items-center justify-center">
           <FaUserPlus className="w-6 h-6 text-purple-300" />
         </div>
 

@@ -130,7 +130,7 @@ export default function PostForm({ post }) {
 
   return (
     <form onSubmit={handleSubmit(submit)} className="max-w-4xl mx-auto px-4">
-      <div className="glass-container bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl py-4 px-1 md:p-8 shadow-xl shadow-purple-900/20">
+      <div className="glass-container bg-white/5 border border-white/10 rounded-3xl py-4 px-1 md:p-8 shadow-xl shadow-purple-900/20">
         {/* Header */}
         <div className="mb-6 md:mb-8 text-center">
           <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent">

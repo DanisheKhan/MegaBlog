@@ -30,7 +30,7 @@ function Header() {
   );
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-sm">
+    <header className="fixed top-0 w-full z-50 bg-white/5 border-b border-white/10 shadow-sm backdrop-blur-md">
       <nav className="flex items-center justify-between h-16 container mx-auto px-4">
         {/* Logo */}
         <Link to="/" className="z-50">
@@ -76,7 +76,7 @@ function Header() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div
-            className="fixed inset-0 backdrop-blur-lg md:hidden z-40"
+            className="fixed inset-0 backdrop-blur-md md:hidden z-40"
             onClick={() => setIsMenuOpen(false)}
           >
             <div

@@ -70,11 +70,11 @@ function Home() {
         <Container>
           <div className="flex flex-col items-center justify-center min-h-[70vh]">
             {/* Glass Morphism Card */}
-            <div className="glass-container relative group p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl max-w-2xl w-full">
+            <div className="glass-container relative group p-8 rounded-3xl border border-white/10 bg-white/5  max-w-2xl w-full">
               <div className="absolute inset-0 rounded-3xl border border-white/5 bg-gradient-to-br from-white/10 to-transparent" />
               <div className="relative z-10 space-y-6">
                 <div className="flex justify-center">
-                  <div className="p-4 rounded-full bg-white/5 border border-white/10 backdrop-blur-lg">
+                  <div className="p-4 rounded-full bg-white/5 border border-white/10 ">
                     <svg
                       className="w-16 h-16 text-purple-300"
                       fill="none"
