@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 function PostCard({ $id, title, featuredImage }) {
   return (
     <Link to={`/post/${$id}`} className="block h-full">
-      <div className="group relative h-full overflow-hidden rounded-2xl md:transition-all md:duration-300 md:hover:scale-[1.02]">
+      <div className="group relative h-full overflow-hidden rounded-2xl">
         <div className="glass-container bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-4 h-full flex flex-col">
           {/* Image Container with optimized dimensions */}
           <div className="relative overflow-hidden rounded-xl mb-4 aspect-[4/3] flex-grow">
             <img
-             src={appwriteService.getFilePreview(featuredImage)}
-             alt={title}
+              src={appwriteService.getFilePreview(featuredImage)}
+              alt={title}
               width={400}
               height={300}
-              className="w-full h-full object-cover md:transition-transform md:duration-500 md:group-hover:scale-105"
+              className="w-full h-full object-cover"
               loading="lazy"
               decoding="async"
               style={{ contentVisibility: "auto" }}
@@ -24,7 +24,7 @@ function PostCard({ $id, title, featuredImage }) {
 
           {/* Title Section */}
           <div className="mt-auto pb-2">
-            <h2 className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200 px-2 md:group-hover:translate-x-2 md:transition-transform md:duration-300">
+            <h2 className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200 px-2">
               {title}
             </h2>
           </div>
