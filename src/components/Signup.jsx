@@ -67,7 +67,7 @@ function Signup() {
                 <Input
                   label="Full Name"
                   id="name"
-                  placeholder="John Doe"
+                  placeholder="Danish Khan"
                   className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${
                     errors.name ? "border-red-400/50" : ""
                   }`}
@@ -187,8 +187,8 @@ function Signup() {
       </div>
 
       {/* Background Effects */}
-      <div className="absolute top-20 left-1/4 w-24 h-24 rounded-full bg-purple-500/20 blur-3xl -z-10" />
-      <div className="absolute bottom-10 right-1/4 w-32 h-32 rounded-full bg-pink-500/20 blur-3xl -z-10" />
+      {/* <div className="absolute top-20 left-1/4 w-24 h-24 rounded-full bg-purple-500/20 blur-3xl -z-10" />
+      <div className="absolute bottom-10 right-1/4 w-32 h-32 rounded-full bg-pink-500/20 blur-3xl -z-10" /> */}
     </div>
   );
 }
