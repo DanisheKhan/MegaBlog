@@ -6,7 +6,7 @@ function PostCard({ $id, title, featuredImage }) {
   return (
     <Link to={`/post/${$id}`} className="block h-full">
       <div className="group relative h-full overflow-hidden rounded-2xl">
-        <div className="glass-container bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-4 h-full flex flex-col">
+        <div className=" bg-white/5 border border-white/10 rounded-2xl p-4 h-full flex flex-col">
           {/* Image Container with optimized dimensions */}
           <div className="relative overflow-hidden rounded-xl mb-4 aspect-[4/3] flex-grow">
             <img
