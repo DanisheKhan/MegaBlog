@@ -3,10 +3,11 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100dvh;
+  height: 100svh;
   width: 100dvw;
   position: fixed;
   z-index: -1;
   top: 0;
   left: 0;
+  height: -webkit-fill-available;
 }
