@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../store/authSlice";
 import { Button, Input, Logo } from "./index";
 import { useDispatch } from "react-redux";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import authService from "../appwrite/auth";
 import { useForm } from "react-hook-form";
 import { FaSignInAlt } from "react-icons/fa";
 
 function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -32,14 +34,14 @@ function Login() {
   };
 
   return (
-    <div className=" mt-8 flex items-center justify-center p-4">
-      <div className="glass-container relative group p-8 rounded-3xl border border-white/10 bg-white/5  shadow-2xl shadow-black/30 hover:shadow-purple-500/20 transition-all duration-500 max-w-md w-full">
+    <div className="mt-8 flex items-center justify-center p-4">
+      <div className="glass-container relative group p-8 rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-black/30 hover:shadow-purple-500/20 transition-all duration-500 max-w-md w-full">
         {/* Decorative Elements */}
         <div className="absolute inset-0 rounded-3xl border border-white/5 bg-gradient-to-br from-white/10 to-transparent" />
-        <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-white/5 border border-white/10  flex items-center justify-center">
+        <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
           <FaSignInAlt className="w-6 h-6 text-purple-300" />
         </div>
-
+  
         {/* Content */}
         <div className="relative z-10 space-y-6">
           {/* Header */}
@@ -54,10 +56,10 @@ function Login() {
               </p>
             </div>
           </div>
-
+  
           {/* Error Message */}
           {error && <p className="text-red-300 text-center text-sm">{error}</p>}
-
+  
           {/* Form */}
           <form onSubmit={handleSubmit(login)} className="space-y-6">
             <div className="space-y-4">
@@ -84,12 +86,12 @@ function Login() {
                   </span>
                 )}
               </div>
-
-              <div>
+  
+              <div className="relative">
                 <Input
                   label="Password"
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className={`w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 placeholder:text-purple-100/50 text-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-300/50 transition-all ${
                     errors.password ? "border-red-400/50" : ""
@@ -98,6 +100,17 @@ function Login() {
                     required: "Password is required",
                   })}
                 />
+                <button
+                  type="button"
+                  className="absolute right-3 top-13 transform -translate-y-1/2 text-purple-300 hover:text-purple-200"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <FaEyeSlash className="w-5 h-5" />
+                  ) : (
+                    <FaEye className="w-5 h-5" />
+                  )}
+                </button>
                 {errors.password && (
                   <span className="text-red-300 text-sm mt-1">
                     {errors.password.message}
@@ -105,7 +118,7 @@ function Login() {
                 )}
               </div>
             </div>
-
+  
             <Button
               type="submit"
               className="w-full py-3.5 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all gap-2 flex justify-center items-center"
@@ -114,7 +127,7 @@ function Login() {
               Sign In
             </Button>
           </form>
-
+  
           {/* Signup Link */}
           <p className="text-center text-purple-100/80 text-sm">
             Don't have an account?{" "}
@@ -127,10 +140,6 @@ function Login() {
           </p>
         </div>
       </div>
-
-      {/* Background Effects */}
-      {/* <div className="absolute top-20 left-1/4 w-24 h-24 rounded-full bg-purple-500/20 blur-3xl -z-10" />
-      <div className="absolute bottom-10 right-1/4 w-32 h-32 rounded-full bg-pink-500/20 blur-3xl -z-10" /> */}
     </div>
   );
 }
