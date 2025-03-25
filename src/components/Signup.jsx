@@ -6,8 +6,11 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { FaUserPlus } from "react-icons/fa";
 import { login } from "../store/authSlice";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Signup() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState("");
@@ -112,11 +115,11 @@ function Signup() {
               </div>
 
               {/* Password */}
-              <div>
+              <div className="relative">
                 <Input
                   label="Password"
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${
                     errors.password ? "border-red-400/50" : ""
@@ -132,6 +135,17 @@ function Signup() {
                       "Password must contain at least one uppercase letter, one number, and one special character",
                   })}
                 />
+                <button
+                  type="button"
+                  className="absolute right-3 top-12 transform -translate-y-1/2 text-purple-300 hover:text-purple-200"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <FaEyeSlash className="w-5 h-5" />
+                  ) : (
+                    <FaEye className="w-5 h-5" />
+                  )}
+                </button>
                 {errors.password && (
                   <span className="text-red-300 text-sm mt-1">
                     {errors.password.message}
@@ -140,11 +154,11 @@ function Signup() {
               </div>
 
               {/* Confirm Password */}
-              <div>
+              <div className="relative">
                 <Input
                   label="Confirm Password"
                   id="confirmPassword"
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${
                     errors.confirmPassword ? "border-red-400/50" : ""
@@ -155,6 +169,17 @@ function Signup() {
                       value === watch("password") || "Passwords do not match",
                   })}
                 />
+                <button
+                  type="button"
+                  className="absolute right-3 top-12 transform -translate-y-1/2 text-purple-300 hover:text-purple-200"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? (
+                    <FaEyeSlash className="w-5 h-5" />
+                  ) : (
+                    <FaEye className="w-5 h-5" />
+                  )}
+                </button>
                 {errors.confirmPassword && (
                   <span className="text-red-300 text-sm mt-1">
                     {errors.confirmPassword.message}
@@ -185,12 +210,7 @@ function Signup() {
           </p>
         </div>
       </div>
-
-      {/* Background Effects */}
-      {/* <div className="absolute top-20 left-1/4 w-24 h-24 rounded-full bg-purple-500/20 blur-3xl -z-10" />
-      <div className="absolute bottom-10 right-1/4 w-32 h-32 rounded-full bg-pink-500/20 blur-3xl -z-10" /> */}
     </div>
   );
 }
-
 export default Signup;
