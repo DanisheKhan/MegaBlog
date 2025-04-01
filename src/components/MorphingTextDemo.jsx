@@ -1,9 +1,12 @@
 import { MorphingText } from "./magicui/morphing-text";
 
 const texts = [
-  "Danish_Khan",
-  "Web_Developer",
-  "React_Developer",
+  "DanishKhan",
+  "FullStackDeveloper",
+  "DanishKhan",
+  "WebDeveloper",
+  "DanishKhan",
+  "ReactDeveloper",
 ];
 
 export function MorphingTextDemo() {
