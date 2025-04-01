@@ -9,7 +9,7 @@ const Footer = () => {
           {/* About Section */}
           <div className="mb-8">
             <h3 className="text-xl font-bold mb-4">About Us</h3>
-            <p className="text-gray-400 text-sm">
+            <p className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200 text-sm">
               Danish Khan – Web Developer Building modern web apps with React.js
               & Tailwind CSS. Focused on clean, user-centric code and
               responsive, visually stunning interfaces. Let’s create something
@@ -24,7 +24,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200 hover:text-white transition-colors"
                 >
                   Home
                 </Link>
@@ -32,7 +32,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200 hover:text-white transition-colors"
                 >
                   About
                 </a>
@@ -40,7 +40,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200 hover:text-white transition-colors"
                 >
                   Services
                 </a>
@@ -48,7 +48,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200 hover:text-white transition-colors"
                 >
                   Contact
                 </a>
@@ -57,9 +57,9 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="mb-8">
+          <div className="mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200">
             <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-            <ul className="text-gray-400 space-y-2">
+            <ul className=" space-y-2">
               <li>Eidgah Colony </li>
               <li>Bhusawal, BSL 425201</li>
               <li>Email: khandanishe125@gmail.com</li>
@@ -129,7 +129,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-700 mt-8 py-8">
-          <p className="text-center text-gray-400 text-sm">
+          <p className="text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200 text-sm">
             &copy; {new Date().getFullYear()}{" "}
             <span className="font-bold">Danish Khan</span>. All rights reserved.
           </p>
