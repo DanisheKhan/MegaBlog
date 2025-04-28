@@ -131,7 +131,7 @@ export class Service {
         "ffffff", // border color
         0, // border radius
         1, // full opacity
-        0, // no rotation
+        0, 
         "FFFFFF", // background color
         "webp", // output webp format for better performance
       );
