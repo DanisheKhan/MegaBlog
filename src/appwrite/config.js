@@ -123,17 +123,17 @@ export class Service {
       return this.bucket.getFileView(
         conf.appwriteBucketId,
         fileId,
-        1200, // width, optimized for most screens
-        0, // height, ignored when 0
-        "center", // crop center
-        "80", // slightly lower quality for better performance
-        0, // border width
-        "ffffff", // border color
-        0, // border radius
-        1, // full opacity
+        1200,
+        0,
+        "center",
+        "80", 
+        0,
+        "ffffff", 
         0, 
-        "FFFFFF", // background color
-        "webp", // output webp format for better performance
+        1, 
+        0, 
+        "FFFFFF", 
+        "webp", 
       );
     } catch (error) {
       console.log("Appwrite service :: getFilePreview :: error", error);
