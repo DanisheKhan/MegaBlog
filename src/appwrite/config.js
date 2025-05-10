@@ -122,8 +122,8 @@ export class Service {
     if (!fileId) return "";
 
     try {
-      // Use getFileDownload instead of getFileView for more reliable rendering
-      return this.bucket.getFileDownload(conf.appwriteBucketId, fileId);
+      // Generate a direct preview URL with fewer parameters
+      return this.bucket.getFileView(conf.appwriteBucketId, fileId);
     } catch (error) {
       console.log("Appwrite service :: getFilePreview :: error", error);
       return "";
