@@ -119,19 +119,16 @@ export class Service {
   }
 
   getFilePreview(fileId) {
-  if (!fileId) return '';
-  
-  try {
-    // Generate a direct preview URL with fewer parameters
-    return this.bucket.getFileView(
-      conf.appwriteBucketId,
-      fileId
-    );
-  } catch (error) {
-    console.log("Appwrite service :: getFilePreview :: error", error);
-    return ''; 
+    if (!fileId) return "";
+
+    try {
+      // Use getFileDownload instead of getFileView for more reliable rendering
+      return this.bucket.getFileDownload(conf.appwriteBucketId, fileId);
+    } catch (error) {
+      console.log("Appwrite service :: getFilePreview :: error", error);
+      return "";
+    }
   }
-}
 }
 
 const service = new Service();
