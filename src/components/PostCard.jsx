@@ -1,11 +1,7 @@
 import appwriteService from "../appwrite/config";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 function PostCard({ $id, title, featuredImage }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
-
   return (
     <Link to={`/post/${$id}`} className="block h-full">
       <div className="group relative h-full overflow-hidden rounded-2xl">
@@ -15,20 +11,13 @@ function PostCard({ $id, title, featuredImage }) {
             <img
               src={appwriteService.getFilePreview(featuredImage)}
               alt={title}
+              width={400}
+              height={300}
               className="w-full h-full object-cover"
-              onLoad={() => setImageLoaded(true)}
-              onError={() => {
-                setImageError(true);
-                console.log("Failed to load image:", featuredImage);
-              }}
-              style={{
-                display: imageError ? 'none' : 'block'
-              }}
-            /> {imageError && (
-              <div className="flex items-center justify-center h-40 bg-purple-800/40 rounded-xl">
-                <span>Image not available</span>
-              </div>
-            )}
+              loading="lazy"
+              decoding="async"
+              style={{ contentVisibility: "auto" }}
+            />
             {/* Gradient overlay using pseudo-element */}
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           </div>
