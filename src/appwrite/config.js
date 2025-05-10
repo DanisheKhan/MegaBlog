@@ -119,27 +119,19 @@ export class Service {
   }
 
   getFilePreview(fileId) {
-    try {
-      return this.bucket.getFileView(
-        conf.appwriteBucketId,
-        fileId,
-        1200,
-        0,
-        "center",
-        "80", 
-        0,
-        "ffffff", 
-        0, 
-        1, 
-        0, 
-        "FFFFFF", 
-        "webp", 
-      );
-    } catch (error) {
-      console.log("Appwrite service :: getFilePreview :: error", error);
-      return ''; 
-    }
+  if (!fileId) return '';
+  
+  try {
+    // Generate a direct preview URL with fewer parameters
+    return this.bucket.getFileView(
+      conf.appwriteBucketId,
+      fileId
+    );
+  } catch (error) {
+    console.log("Appwrite service :: getFilePreview :: error", error);
+    return ''; 
   }
+}
 }
 
 const service = new Service();
