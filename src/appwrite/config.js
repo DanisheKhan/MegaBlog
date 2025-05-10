@@ -122,8 +122,12 @@ export class Service {
     if (!fileId) return "";
 
     try {
-      // Generate a direct preview URL with fewer parameters
-      return this.bucket.getFileView(conf.appwriteBucketId, fileId);
+      return this.bucket.getFileView(
+        conf.appwriteBucketId,
+        fileId,
+        800, // width
+        600 // height
+      );
     } catch (error) {
       console.log("Appwrite service :: getFilePreview :: error", error);
       return "";
