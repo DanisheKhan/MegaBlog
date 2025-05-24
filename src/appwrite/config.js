@@ -118,17 +118,16 @@ export class Service {
     }
   }
 
-    getFilePreview(fileId) {
+  getFilePreview(fileId) {
     if (!fileId) return "";
-  
+
     try {
-      // getFilePreview returns a URL object synchronously
-      return this.bucket.getFilePreview(
+      return this.bucket.getFileView(
         conf.appwriteBucketId,
         fileId,
         800, // width
-        600  // height
-      ).href;
+        600 // height
+      );
     } catch (error) {
       console.log("Appwrite service :: getFilePreview :: error", error);
       return "";
