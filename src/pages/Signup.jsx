@@ -7,6 +7,6 @@ function Signup() {
         <SignupComponent />
     </div>
   )
-}
+} 
 
 export default Signup
