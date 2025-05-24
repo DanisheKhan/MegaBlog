@@ -66,7 +66,7 @@ function Login() {
               <div>
                 <Input
                   label="Email Address"
-                  disable
+                  
                   id="email"
                   type="email"
                   placeholder="danish@example.com"
