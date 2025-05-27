@@ -19,16 +19,8 @@ function EditPost() {
                     navigate('/')
                 }
             })
-                .catch(error => {
-                    console.error("Error fetching post:", error);
-                    navigate('/')
-                })
-                .finally(() => {
-                    // Small delay for smooth transition
-                    setTimeout(() => {
-                        setLoading(false)
-                    }, 600)
-                })
+                .catch(() => navigate('/'))
+                .finally(() => setLoading(false))
         } else {
             navigate('/')
         }
@@ -36,8 +28,8 @@ function EditPost() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center p-4">
-                <div className="glass-container bg-[#182234]/60 p-6 rounded-xl border border-blue-900/30 shadow-xl backdrop-blur-lg">
+            <div className="min-h-screen flex items-center justify-center p-4">
+                <div className="glass-container bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-lg">
                     <Loader type="particles" text="Loading editor..." />
                 </div>
             </div>
@@ -45,7 +37,7 @@ function EditPost() {
     }
 
     return post ? (
-        <div className='py-8 page-transition'>
+        <div className='py-8'>
             <Container>
                 <PostForm post={post} />
             </Container>

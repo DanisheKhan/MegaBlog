@@ -8,9 +8,7 @@ function AllPosts() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        let isMounted = true;
-
-        const fetchPosts = async () => {
+        let isMounted = true; const fetchPosts = async () => {
             setLoading(true);
             setError(null);
 
@@ -23,12 +21,7 @@ function AllPosts() {
                 console.error("Error fetching posts:", err);
                 if (isMounted) setError("Failed to load posts. Please try again later.");
             } finally {
-                if (isMounted) {
-                    // Add a small delay for better UX
-                    setTimeout(() => {
-                        setLoading(false);
-                    }, 800);
-                }
+                if (isMounted) setLoading(false);
             }
         };
 
@@ -41,8 +34,8 @@ function AllPosts() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center bg-[#0c1425]/95 p-4">
-                <div className="glass-container bg-[#182234]/60 p-8 rounded-xl border border-blue-900/30 shadow-xl backdrop-blur-lg w-full max-w-xl">
+            <div className="min-h-screen flex items-center justify-center p-4">
+                <div className="glass-container bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-lg">
                     <Loader type="shimmer" text="Loading all posts..." />
                 </div>
             </div>

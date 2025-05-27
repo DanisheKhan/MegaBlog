@@ -7,9 +7,7 @@ function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null); // Error state
-  const navigate = useNavigate();
-
-  useEffect(() => {
+  const navigate = useNavigate(); useEffect(() => {
     let isMounted = true; // Track mount status
 
     const fetchPosts = async () => {
@@ -25,18 +23,11 @@ function Home() {
         console.error("Error fetching posts:", err);
         if (isMounted) setError("Failed to load posts. Please try again.");
       } finally {
-        if (isMounted) {
-          // Add a small delay for smooth transition
-          setTimeout(() => {
-            setLoading(false);
-          }, 600);
-        }
+        if (isMounted) setLoading(false);
       }
     };
 
-    fetchPosts();
-
-    return () => {
+    fetchPosts(); return () => {
       isMounted = false; // Cleanup function
     };
   }, []);
@@ -48,20 +39,21 @@ function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4">
-        <div className="relative w-full max-w-md">
-          <Loader type="particles" size="large" text="Welcome to MegaBlog" />
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="glass-container bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-lg">
+          <Loader type="particles" size="large" text="Welcome to MegaBlog..." />
         </div>
       </div>
     );
   }
+
   if (error) {
     return (
       <div className="min-h-screen py-16 flex flex-col items-center justify-center">
-        <p className="text-xl text-red-300">{error}</p>
+        <p className="text-xl text-red-400">{error}</p>
         <button
           onClick={() => window.location.reload()}
-          className="mt-4 px-6 py-3 bg-[#1e40af] text-white rounded-lg hover:bg-[#1e3a8a] transition-all shadow-md hover:shadow-lg"
+          className="mt-4 px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-all"
         >
           Retry
         </button>
@@ -73,14 +65,15 @@ function Home() {
     return (
       <div className="min-h-screen py-16">
         <Container>
-          <div className="flex flex-col items-center justify-center min-h-[60vh]">            {/* Glass Morphism Card */}
-            <div className="glass-container relative group p-8 rounded-2xl border border-gray-700/30 bg-[#182234]/80 max-w-2xl w-full shadow-xl">
-              <div className="absolute inset-0 rounded-2xl border border-gray-700/20 bg-gradient-to-br from-blue-900/5 to-transparent" />
+          <div className="flex flex-col items-center justify-center min-h-[70vh]">
+            {/* Glass Morphism Card */}
+            <div className="glass-container relative group p-8 rounded-3xl border border-white/10 bg-white/5  max-w-2xl w-full">
+              <div className="absolute inset-0 rounded-3xl border border-white/5 bg-gradient-to-br from-white/10 to-transparent" />
               <div className="relative z-10 space-y-6">
                 <div className="flex justify-center">
-                  <div className="p-4 rounded-full bg-[#1e40af]/20 border border-blue-500/20 shadow-inner shadow-blue-500/10">
+                  <div className="p-4 rounded-full bg-white/5 border border-white/10 ">
                     <svg
-                      className="w-16 h-16 text-blue-200"
+                      className="w-16 h-16 text-purple-300"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -95,17 +88,17 @@ function Home() {
                   </div>
                 </div>
                 <div className="space-y-4 text-center">
-                  <h1 className="text-4xl md:text-5xl font-bold text-blue-50">
+                  <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent">
                     Discover Amazing Content
                   </h1>
-                  <p className="text-lg text-blue-100/80 font-medium">
+                  <p className="text-lg text-purple-100/80 font-medium">
                     Please sign in to view the latest content from our amazing creators.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
                     onClick={() => handleNavigate("/login")}
-                    className="px-8 py-3.5 rounded-xl bg-[#1e40af]/20 border border-blue-500/30 cursor-pointer hover:bg-[#1e40af]/30 transition-all duration-300 font-semibold text-blue-50 flex items-center justify-center gap-2 shadow-md"
+                    className="px-8 py-3.5 rounded-xl bg-white/10 border border-white/20 cursor-pointer hover:bg-white/20 transition-all duration-300 font-semibold text-purple-50 flex items-center justify-center gap-2"
                   >
                     <span>Sign In</span>
                     <svg
@@ -124,7 +117,7 @@ function Home() {
                   </button>
                   <button
                     onClick={() => handleNavigate("/signup")}
-                    className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 transition-all duration-300 font-semibold text-white flex items-center justify-center gap-2 shadow-lg shadow-blue-900/30 cursor-pointer"
+                    className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all duration-300 font-semibold text-white flex items-center justify-center gap-2 shadow-lg shadow-purple-500/30 cursor-pointer"
                   >
                     <span>Get Started</span>
                     <svg
@@ -149,20 +142,13 @@ function Home() {
       </div>
     );
   }
+
   return (
-    <div className="w-full py-8 page-transition">
+    <div className="w-full py-8">
       <Container>
         <div className="flex flex-wrap -mx-2">
-          {posts.map((post, index) => (
-            <div
-              key={post.$id}
-              className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
-              style={{
-                animationDelay: `${index * 0.05}s`,
-                animation: "fadeIn 0.5s ease-out forwards",
-                opacity: 0
-              }}
-            >
+          {posts.map((post) => (
+            <div key={post.$id} className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
               <PostCard {...post} />
             </div>
           ))}

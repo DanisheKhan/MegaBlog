@@ -20,7 +20,6 @@ export {
   Logo,
   LogoutBtn,
   RTE,
-  Loader,
   Signup,
   Login,
   Button,
@@ -29,4 +28,5 @@ export {
   AuthLayout,
   Input,
   Select,
+  Loader,
 };
