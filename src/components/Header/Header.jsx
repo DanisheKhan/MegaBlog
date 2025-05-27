@@ -27,10 +27,9 @@ function Header() {
       setIsMenuOpen(false);
     },
     [navigate]
-  );
-  return (
-    <header className="fixed top-0 w-full z-50 bg-[#1e1e2e]/70 border-b border-gray-700/30 shadow-md backdrop-blur-md">
-      <nav className="flex items-center justify-between h-16 container mx-auto px-4">
+  ); return (
+    <header className="fixed top-[5px] sm:px-4  left-0 right-0 mx-auto max-w-[calc(100%-10px)]  rounded-2xl z-50 bg-[#1e1e2e]/70 border-b border-gray-700/30 shadow-md backdrop-blur-md">
+      <nav className="flex items-center justify-between h-16 w-full px-4">
         {/* Logo */}
         <Link to="/" className="z-50">
           <div className="scale-40 lg:scale-30 xl:scale-30">
@@ -81,7 +80,7 @@ function Header() {
               className="fixed inset-0 flex flex-col items-center justify-center h-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="bg-[#1e1e2e]/90 rounded-xl border border-gray-700/30 p-4 absolute top-[67px] shadow-lg w-full max-w-sm">
+              <div className="bg-[#1e1e2e]/90 rounded-xl border  border-gray-700/30 p-4 absolute top-[67px] shadow-lg w-full max-w-sm">
                 <ul className="flex flex-col items-center gap-4">
                   {navItems.map(
                     (item) =>

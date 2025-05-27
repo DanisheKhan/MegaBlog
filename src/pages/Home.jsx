@@ -67,7 +67,7 @@ function Home() {
     return (
       <div className="min-h-screen py-16">
         <Container>
-          <div className="flex flex-col items-center justify-center min-h-[70vh]">
+          <div className="flex flex-col items-center justify-center min-h-[60vh]">
             {/* Glass Morphism Card */}            <div className="glass-container relative group p-8 rounded-3xl border border-gray-700/30 bg-[#1e1e2e]/70 max-w-2xl w-full shadow-lg">
               <div className="absolute inset-0 rounded-3xl border border-gray-700/20 bg-gradient-to-br from-gray-700/5 to-transparent" />
               <div className="relative z-10 space-y-6">

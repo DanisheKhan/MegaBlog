@@ -46,9 +46,6 @@ function AllPosts() {
     return (
         <div className='min-h-screen py-12'>
             <Container>
-                <h1 className='text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent mb-8 text-center'>
-                    All Posts
-                </h1>
 
                 {error ? (
                     <div className='text-center text-red-400 py-12'>
