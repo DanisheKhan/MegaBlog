@@ -60,7 +60,11 @@ function Signup() {
           </div>
 
           {/* Error Message */}
-          {error && <p className="text-red-300 text-center text-sm">{error}</p>}
+          {error && (
+            <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-3 text-center mb-4">
+              <p className="text-red-300 text-sm">{error}</p>
+            </div>
+          )}
 
           {/* Form */}
           <form onSubmit={handleSubmit(createAccount)} className="space-y-6">
@@ -71,9 +75,8 @@ function Signup() {
                   label="Full Name"
                   id="name"
                   placeholder="Danish Khan"
-                  className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${
-                    errors.name ? "border-red-400/50" : ""
-                  }`}
+                  className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${errors.name ? "border-red-400/50" : ""
+                    }`}
                   {...register("name", {
                     required: "Full name is required",
                     minLength: {
@@ -96,9 +99,8 @@ function Signup() {
                   id="email"
                   type="email"
                   placeholder="danish@example.com"
-                  className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${
-                    errors.email ? "border-red-400/50" : ""
-                  }`}
+                  className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${errors.email ? "border-red-400/50" : ""
+                    }`}
                   {...register("email", {
                     required: "Email is required",
                     pattern: {
@@ -121,9 +123,8 @@ function Signup() {
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
-                  className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${
-                    errors.password ? "border-red-400/50" : ""
-                  }`}
+                  className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${errors.password ? "border-red-400/50" : ""
+                    }`}
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
@@ -160,9 +161,8 @@ function Signup() {
                   id="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="••••••••"
-                  className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${
-                    errors.confirmPassword ? "border-red-400/50" : ""
-                  }`}
+                  className={`glass-input focus:ring-2 focus:ring-purple-300/50 focus:outline-none transition-all duration-200 ${errors.confirmPassword ? "border-red-400/50" : ""
+                    }`}
                   {...register("confirmPassword", {
                     required: "Please confirm your password",
                     validate: (value) =>
@@ -198,6 +198,8 @@ function Signup() {
             </Button>
           </form>
 
+          {/* OAuth2 Options */}
+          
           {/* Login Link */}
           <p className="text-center text-purple-100/80 text-sm">
             Already have an account?{" "}

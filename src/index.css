@@ -13,38 +13,36 @@
 /* For WebKit browsers (Chrome, Edge, Safari) */
 /* Change scrollbar width */
 ::-webkit-scrollbar {
-  width: 5px; /* Adjust the width */
+  width: 6px; /* Adjust the width */
 }
 
 /* Change scrollbar track */
 ::-webkit-scrollbar-track {
-  background: #1a1a2e; /* Dark background matching our theme */
+  background: #0c1425; /* Dark background matching our theme */
   border-radius: 10px;
 }
 
 /* Change scrollbar thumb (the draggable part) */
 ::-webkit-scrollbar-thumb {
-  background: #3b4a77; /* Professional blue-gray */
   border-radius: 10px;
-}
-
-/* Hover effect */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
+  background-color: #0c1425;
+  overscroll-behavior: none; /* Prevents bouncing effect on some browsers */
 }
 
 body {
   overflow-x: hidden;
   color: white;
-  /* background-image: url("../Images/bg.png") ;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center; */
-  background-color: #131313;
+  background-color: #0c1425;
+  min-height: 100%;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  overscroll-behavior: none; /* Prevents bouncing effect on some browsers */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :root {

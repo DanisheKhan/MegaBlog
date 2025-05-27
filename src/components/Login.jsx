@@ -32,31 +32,32 @@ function Login() {
       setError(error.message);
     }
   };
-
   return (<div className="mt-8 flex items-center justify-center p-4">
-    <div className="glass-container relative group p-8 rounded-3xl border border-gray-700/30 bg-[#1e1e2e]/70 shadow-lg transition-all duration-300 max-w-md w-full">
+    <div className="glass-container relative group p-8 rounded-2xl border border-gray-700/30 bg-[#182234]/80 shadow-xl transition-all duration-300 max-w-md w-full">
       {/* Decorative Elements */}
-      <div className="absolute inset-0 rounded-3xl border border-gray-700/20 bg-gradient-to-br from-gray-700/5 to-transparent" />
-      <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-[#1e1e2e] border border-gray-700/30 flex items-center justify-center">
-        <FaSignInAlt className="w-6 h-6 text-gray-300" />
+      <div className="absolute inset-0 rounded-2xl border border-gray-700/20 bg-gradient-to-br from-blue-900/5 to-transparent" />
+      <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-[#1e40af]/90 border border-gray-700/30 flex items-center justify-center shadow-lg shadow-blue-950/20">
+        <FaSignInAlt className="w-6 h-6 text-blue-100" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 space-y-6">
         {/* Header */}
-        <div className="flex flex-col items-center gap-4">            <Logo className="w-24 h-24 text-gray-300" />
+        <div className="flex flex-col items-center gap-4">            <Logo className="w-24 h-24 text-blue-200" />
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-white">
+            <h1 className="text-3xl font-bold text-blue-50">
               Welcome Back
             </h1>
             <p className="text-gray-300 mt-2">
               Sign in to access your account
             </p>
           </div>
-        </div>
-
-        {/* Error Message */}
-        {error && <p className="text-red-300 text-center text-sm">{error}</p>}
+        </div>        {/* Error Message */}
+        {error && (
+          <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-3 text-center">
+            <p className="text-red-300 text-sm">{error}</p>
+          </div>
+        )}
 
         {/* Form */}
         <form onSubmit={handleSubmit(login)} className="space-y-6">
@@ -123,14 +124,15 @@ function Login() {
             <FaSignInAlt className="w-5 h-5" />
             Sign In
           </Button>
-        </form>
+        </form>        {/* OAuth2 Options */}
+        
 
         {/* Signup Link */}
-        <p className="text-center text-purple-100/80 text-sm">
+        <p className="text-center text-blue-100/80 text-sm mt-5">
           Don't have an account?{" "}
           <Link
             to="/signup"
-            className="text-purple-300 hover:text-indigo-200 transition-colors font-semibold"
+            className="text-blue-300 hover:text-blue-200 transition-colors font-semibold"
           >
             Create account
           </Link>

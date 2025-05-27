@@ -3,41 +3,44 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-gray-700/30 mt-8 py-8 text-white pt-12">
+    <footer className="border-t border-gray-700/40 mt-8 py-8 text-white pt-12 bg-[#0a1121]/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {/* About Section */}
           <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4">About Us</h3>
-            <p className="text-gray-300 text-sm">
+            <h3 className="text-xl font-bold mb-4 text-blue-50">About Us</h3>
+            <p className="text-blue-100/80 text-sm leading-relaxed">
               Danish Khan – Web Developer Building modern web apps with React.js
               & Tailwind CSS. Focused on clean, user-centric code and
-              responsive, visually stunning interfaces. Let’s create something
+              responsive, visually stunning interfaces. Let's create something
               extraordinary.
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>                <Link
-                to="/"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Home
-              </Link>
-              </li>
-              <li>                <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                About
-              </a>
+            <h3 className="text-xl font-bold mb-4 text-blue-50">Quick Links</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  to="/"
+                  className="text-blue-100/80 hover:text-white transition-colors link-hover"
+                >
+                  Home
+                </Link>
               </li>
               <li>
                 <a
-                  href="#" className="text-gray-300 hover:text-white transition-colors"
+                  href="#"
+                  className="text-blue-100/80 hover:text-white transition-colors link-hover"
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-blue-100/80 hover:text-white transition-colors link-hover"
                 >
                   Services
                 </a>
@@ -45,16 +48,18 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-pink-200 hover:text-white transition-colors"
+                  className="text-blue-100/80 hover:text-white transition-colors link-hover"
                 >
                   Contact
                 </a>
               </li>
             </ul>
-          </div>          {/* Contact Info */}
-          <div className="mb-8 text-gray-300">
-            <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-            <ul className="space-y-2">
+          </div>
+
+          {/* Contact Info */}
+          <div className="mb-8">
+            <h3 className="text-xl font-bold mb-4 text-blue-50">Contact Us</h3>
+            <ul className="space-y-2 text-blue-100/80">
               <li>Eidgah Colony </li>
               <li>Bhusawal, BSL 425201</li>
               <li>Email: khandanishe125@gmail.com</li>
@@ -64,11 +69,11 @@ const Footer = () => {
 
           {/* Social Media */}
           <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4">Follow Us</h3>
+            <h3 className="text-xl font-bold mb-4 text-blue-50">Follow Us</h3>
             <div className="flex space-x-4">
               <a
                 href="https://github.com/DanisheKhan"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-blue-300/70 hover:text-blue-100 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -85,7 +90,7 @@ const Footer = () => {
               </a>
               <a
                 href="https://www.linkedin.com/in/danish-khan-258386253?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-blue-300/70 hover:text-blue-100 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -102,7 +107,7 @@ const Footer = () => {
               </a>
               <a
                 href="https://www.instagram.com/danishekhan_01/"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-blue-300/70 hover:text-blue-100 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -122,8 +127,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright */}        <div className="border-t border-gray-700/30 mt-8 py-8">
-          <p className="text-center text-gray-300 text-sm">
+        {/* Copyright */}
+        <div className="border-t border-gray-700/30 mt-8 py-8">
+          <p className="text-center text-blue-100/80 text-sm">
             &copy; {new Date().getFullYear()}{" "}
             <span className="font-bold">Danish Khan</span>. All rights reserved.
           </p>

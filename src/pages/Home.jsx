@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import appwriteService from "../appwrite/config";
-import { Container, PostCard } from "../components";
+import { Container, PostCard, Loader } from "../components";
 import { useNavigate } from "react-router-dom";
-import { FaSpinner } from "react-icons/fa";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -26,7 +25,12 @@ function Home() {
         console.error("Error fetching posts:", err);
         if (isMounted) setError("Failed to load posts. Please try again.");
       } finally {
-        if (isMounted) setLoading(false);
+        if (isMounted) {
+          // Add a small delay for smooth transition
+          setTimeout(() => {
+            setLoading(false);
+          }, 600);
+        }
       }
     };
 
@@ -44,18 +48,20 @@ function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <FaSpinner className="w-12 h-12 text-purple-500 animate-spin" />
+      <div className="min-h-screen flex flex-col items-center justify-center p-4">
+        <div className="relative w-full max-w-md">
+          <Loader type="particles" size="large" text="Welcome to MegaBlog" />
+        </div>
       </div>
     );
   }
-
   if (error) {
     return (
       <div className="min-h-screen py-16 flex flex-col items-center justify-center">
-        <p className="text-xl text-red-400">{error}</p>        <button
+        <p className="text-xl text-red-300">{error}</p>
+        <button
           onClick={() => window.location.reload()}
-          className="mt-4 px-6 py-3 bg-[#3b4a77] text-white rounded-lg hover:bg-[#4a5c8c] transition-all"
+          className="mt-4 px-6 py-3 bg-[#1e40af] text-white rounded-lg hover:bg-[#1e3a8a] transition-all shadow-md hover:shadow-lg"
         >
           Retry
         </button>
@@ -67,37 +73,39 @@ function Home() {
     return (
       <div className="min-h-screen py-16">
         <Container>
-          <div className="flex flex-col items-center justify-center min-h-[60vh]">
-            {/* Glass Morphism Card */}            <div className="glass-container relative group p-8 rounded-3xl border border-gray-700/30 bg-[#1e1e2e]/70 max-w-2xl w-full shadow-lg">
-              <div className="absolute inset-0 rounded-3xl border border-gray-700/20 bg-gradient-to-br from-gray-700/5 to-transparent" />
+          <div className="flex flex-col items-center justify-center min-h-[60vh]">            {/* Glass Morphism Card */}
+            <div className="glass-container relative group p-8 rounded-2xl border border-gray-700/30 bg-[#182234]/80 max-w-2xl w-full shadow-xl">
+              <div className="absolute inset-0 rounded-2xl border border-gray-700/20 bg-gradient-to-br from-blue-900/5 to-transparent" />
               <div className="relative z-10 space-y-6">
-                <div className="flex justify-center">                  <div className="p-4 rounded-full bg-[#1e1e2e] border border-gray-700/30">
-                  <svg
-                    className="w-16 h-16 text-gray-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
+                <div className="flex justify-center">
+                  <div className="p-4 rounded-full bg-[#1e40af]/20 border border-blue-500/20 shadow-inner shadow-blue-500/10">
+                    <svg
+                      className="w-16 h-16 text-blue-200"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                      />
+                    </svg>
+                  </div>
                 </div>
-                </div>
-                <div className="space-y-4 text-center">                  <h1 className="text-4xl md:text-5xl font-bold text-white">
-                  Discover Amazing Content
-                </h1>
-                  <p className="text-lg text-gray-300 font-medium">
+                <div className="space-y-4 text-center">
+                  <h1 className="text-4xl md:text-5xl font-bold text-blue-50">
+                    Discover Amazing Content
+                  </h1>
+                  <p className="text-lg text-blue-100/80 font-medium">
                     Please sign in to view the latest content from our amazing creators.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
                     onClick={() => handleNavigate("/login")}
-                    className="px-8 py-3.5 rounded-xl bg-white/10 border border-white/20 cursor-pointer hover:bg-white/20 transition-all duration-300 font-semibold text-purple-50 flex items-center justify-center gap-2"
+                    className="px-8 py-3.5 rounded-xl bg-[#1e40af]/20 border border-blue-500/30 cursor-pointer hover:bg-[#1e40af]/30 transition-all duration-300 font-semibold text-blue-50 flex items-center justify-center gap-2 shadow-md"
                   >
                     <span>Sign In</span>
                     <svg
@@ -116,7 +124,7 @@ function Home() {
                   </button>
                   <button
                     onClick={() => handleNavigate("/signup")}
-                    className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all duration-300 font-semibold text-white flex items-center justify-center gap-2 shadow-lg shadow-purple-500/30 cursor-pointer"
+                    className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 transition-all duration-300 font-semibold text-white flex items-center justify-center gap-2 shadow-lg shadow-blue-900/30 cursor-pointer"
                   >
                     <span>Get Started</span>
                     <svg
@@ -141,13 +149,20 @@ function Home() {
       </div>
     );
   }
-
   return (
-    <div className="w-full py-8">
+    <div className="w-full py-8 page-transition">
       <Container>
         <div className="flex flex-wrap -mx-2">
-          {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+          {posts.map((post, index) => (
+            <div
+              key={post.$id}
+              className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+              style={{
+                animationDelay: `${index * 0.05}s`,
+                animation: "fadeIn 0.5s ease-out forwards",
+                opacity: 0
+              }}
+            >
               <PostCard {...post} />
             </div>
           ))}

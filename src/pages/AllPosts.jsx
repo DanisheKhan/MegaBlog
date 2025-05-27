@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, PostCard } from '../components';
+import { Container, PostCard, Loader } from '../components';
 import appwriteService from "../appwrite/config";
-import { FaSpinner } from 'react-icons/fa';
 
 function AllPosts() {
     const [posts, setPosts] = useState([]);
@@ -24,7 +23,12 @@ function AllPosts() {
                 console.error("Error fetching posts:", err);
                 if (isMounted) setError("Failed to load posts. Please try again later.");
             } finally {
-                if (isMounted) setLoading(false);
+                if (isMounted) {
+                    // Add a small delay for better UX
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 800);
+                }
             }
         };
 
@@ -37,8 +41,10 @@ function AllPosts() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <FaSpinner className="w-12 h-12 text-purple-500" />
+            <div className="min-h-screen flex flex-col items-center justify-center bg-[#0c1425]/95 p-4">
+                <div className="glass-container bg-[#182234]/60 p-8 rounded-xl border border-blue-900/30 shadow-xl backdrop-blur-lg w-full max-w-xl">
+                    <Loader type="shimmer" text="Loading all posts..." />
+                </div>
             </div>
         );
     }
