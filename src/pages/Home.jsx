@@ -53,10 +53,9 @@ function Home() {
   if (error) {
     return (
       <div className="min-h-screen py-16 flex flex-col items-center justify-center">
-        <p className="text-xl text-red-400">{error}</p>
-        <button
+        <p className="text-xl text-red-400">{error}</p>        <button
           onClick={() => window.location.reload()}
-          className="mt-4 px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-all"
+          className="mt-4 px-6 py-3 bg-[#3b4a77] text-white rounded-lg hover:bg-[#4a5c8c] transition-all"
         >
           Retry
         </button>
@@ -69,32 +68,29 @@ function Home() {
       <div className="min-h-screen py-16">
         <Container>
           <div className="flex flex-col items-center justify-center min-h-[70vh]">
-            {/* Glass Morphism Card */}
-            <div className="glass-container relative group p-8 rounded-3xl border border-white/10 bg-white/5  max-w-2xl w-full">
-              <div className="absolute inset-0 rounded-3xl border border-white/5 bg-gradient-to-br from-white/10 to-transparent" />
+            {/* Glass Morphism Card */}            <div className="glass-container relative group p-8 rounded-3xl border border-gray-700/30 bg-[#1e1e2e]/70 max-w-2xl w-full shadow-lg">
+              <div className="absolute inset-0 rounded-3xl border border-gray-700/20 bg-gradient-to-br from-gray-700/5 to-transparent" />
               <div className="relative z-10 space-y-6">
-                <div className="flex justify-center">
-                  <div className="p-4 rounded-full bg-white/5 border border-white/10 ">
-                    <svg
-                      className="w-16 h-16 text-purple-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                      />
-                    </svg>
-                  </div>
+                <div className="flex justify-center">                  <div className="p-4 rounded-full bg-[#1e1e2e] border border-gray-700/30">
+                  <svg
+                    className="w-16 h-16 text-gray-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    />
+                  </svg>
                 </div>
-                <div className="space-y-4 text-center">
-                  <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent">
-                    Discover Amazing Content
-                  </h1>
-                  <p className="text-lg text-purple-100/80 font-medium">
+                </div>
+                <div className="space-y-4 text-center">                  <h1 className="text-4xl md:text-5xl font-bold text-white">
+                  Discover Amazing Content
+                </h1>
+                  <p className="text-lg text-gray-300 font-medium">
                     Please sign in to view the latest content from our amazing creators.
                   </p>
                 </div>

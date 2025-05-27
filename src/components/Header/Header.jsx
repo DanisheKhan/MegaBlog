@@ -28,9 +28,8 @@ function Header() {
     },
     [navigate]
   );
-
   return (
-    <header className="fixed top-0 w-full z-50 bg-white/5 border-b border-white/10 shadow-sm backdrop-blur-md">
+    <header className="fixed top-0 w-full z-50 bg-[#1e1e2e]/70 border-b border-gray-700/30 shadow-md backdrop-blur-md">
       <nav className="flex items-center justify-between h-16 container mx-auto px-4">
         {/* Logo */}
         <Link to="/" className="z-50">
@@ -44,13 +43,12 @@ function Header() {
           {navItems.map(
             (item) =>
               item.active && (
-                <li key={item.name}>
-                  <button
-                    onClick={() => handleNavigation(item.slug)}
-                    className="px-4 py-2 text-sm font-medium text-white hover:text-purple-200 hover:bg-white/10 rounded-lg transition-all"
-                  >
-                    {item.name}
-                  </button>
+                <li key={item.name}>                  <button
+                  onClick={() => handleNavigation(item.slug)}
+                  className="px-4 py-2 text-sm font-medium text-gray-200 hover:text-white hover:bg-[#3b4a77]/40 rounded-lg transition-all"
+                >
+                  {item.name}
+                </button>
                 </li>
               )
           )}
@@ -83,7 +81,7 @@ function Header() {
               className="fixed inset-0 flex flex-col items-center justify-center h-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="bg-black/50 rounded-xl border border-white/10 p-4 absolute top-[67px] shadow-lg w-full max-w-sm">
+              <div className="bg-[#1e1e2e]/90 rounded-xl border border-gray-700/30 p-4 absolute top-[67px] shadow-lg w-full max-w-sm">
                 <ul className="flex flex-col items-center gap-4">
                   {navItems.map(
                     (item) =>

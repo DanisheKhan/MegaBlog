@@ -1,5 +1,11 @@
-.bg{
-  background-image: url('../Images/bg.png');
+.bg {
+  background-color: #1a1a2e;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(30, 30, 46, 0.8),
+      rgba(26, 26, 46, 1)
+    ),
+    url("/Images/bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11,3 +17,35 @@
   left: 0;
 }
 
+:root {
+  --primary: #3b4a77;
+  --primary-hover: #4a5c8c;
+  --primary-light: #5e72a5;
+  --accent: #7d8fb8;
+  --text-light: #e0e4f0;
+  --text-lighter: #f5f7fc;
+  --dark-bg: #1a1a2e;
+  --card-bg: rgba(30, 30, 46, 0.7);
+  --border-color: rgba(100, 110, 140, 0.2);
+}
+
+/* Glass Container Effect */
+.glass-container {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Glass Button Effect */
+.glass-button {
+  background: rgba(59, 74, 119, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(59, 74, 119, 0.3);
+  transition: all 0.2s ease;
+}
+
+.glass-button:hover {
+  background: rgba(59, 74, 119, 0.3);
+  border: 1px solid rgba(59, 74, 119, 0.4);
+}
