@@ -90,12 +90,13 @@ export default function Post() {
           </div>
 
           {/* Content Section */}
+          <div className="absolute inset-x-0 pointer-evets-none -bottom-4 h-1/2 sm:h-1/3 bg-gradient-to-t from-indigo" />
           <div className="space-y-6 md:space-y-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold  text-blue-300/70">
               {post.title}
             </h1>
 
-            <div className="prose prose-invert max-w-none glass-panel p-2 sm:p-3 md:p-4 lg:p-5 rounded-xl border border-white/10 ">
+            <div className="prose prose-invert max-w-none glass-panel  sm:p-3 md:p-4 lg:p-5 rounded-xl  ">
               {parsedContent}
             </div>
 

@@ -31,7 +31,7 @@ function App() {
       <div className="bg" />
       <div className="min-h-screen flex flex-col relative w-full">
         <Header />
-        <main className="flex-grow mt-20 mb-8">
+        <main className="flex-grow mt-30 mb-8">
           <Outlet className="Card" />
         </main>
         <Footer />
