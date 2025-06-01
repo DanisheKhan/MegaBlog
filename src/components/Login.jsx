@@ -68,8 +68,7 @@ function Login() {
                 disable
                 id="email"
                 type="email"
-                placeholder="danish@example.com"
-                className={`w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 placeholder:text-purple-100/50 text-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-300/50 transition-all ${errors.email ? "border-red-400/50" : ""
+                placeholder="danish@example.com" className={`w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 placeholder:text-blue-100/50 text-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-300/50 transition-all ${errors.email ? "border-red-400/50" : ""
                   }`}
                 {...register("email", {
                   required: "Email is required",
@@ -91,16 +90,14 @@ function Login() {
                 label="Password"
                 id="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="••••••••"
-                className={`w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 placeholder:text-purple-100/50 text-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-300/50 transition-all ${errors.password ? "border-red-400/50" : ""
+                placeholder="••••••••" className={`w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 placeholder:text-blue-100/50 text-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-300/50 transition-all ${errors.password ? "border-red-400/50" : ""
                   }`}
                 {...register("password", {
                   required: "Password is required",
                 })}
-              />
-              <button
+              />              <button
                 type="button"
-                className="absolute right-3 top-13 transform -translate-y-1/2 text-purple-300 hover:text-purple-200"
+                className="absolute right-3 top-13 transform -translate-y-1/2 text-blue-300 hover:text-blue-200"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
@@ -115,17 +112,15 @@ function Login() {
                 </span>
               )}
             </div>
-          </div>
-
-          <Button
+          </div>          <Button
             type="submit"
-            className="w-full py-3.5 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all gap-2 flex justify-center items-center"
+            className="w-full py-3.5 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all gap-2 flex justify-center items-center"
           >
             <FaSignInAlt className="w-5 h-5" />
             Sign In
           </Button>
         </form>        {/* OAuth2 Options */}
-        
+
 
         {/* Signup Link */}
         <p className="text-center text-blue-100/80 text-sm mt-5">

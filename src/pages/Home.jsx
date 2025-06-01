@@ -38,26 +38,23 @@ function Home() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="glass-container bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-lg">
-          <Loader type="particles" size="large" text="Welcome to MegaBlog..." />
-        </div>
+    return (<div className="min-h-screen flex items-center justify-center p-4">
+      <div className="glass-container bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-lg">
+        <Loader type="particles" size="large" text="Welcome to MegaBlog..." />
       </div>
+    </div>
     );
   }
 
   if (error) {
-    return (
-      <div className="min-h-screen py-16 flex flex-col items-center justify-center">
-        <p className="text-xl text-red-400">{error}</p>
-        <button
-          onClick={() => window.location.reload()}
-          className="mt-4 px-6 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-all"
-        >
-          Retry
-        </button>
-      </div>
+    return (<div className="min-h-screen py-16 flex flex-col items-center justify-center">
+      <p className="text-xl text-blue-400">{error}</p><button
+        onClick={() => window.location.reload()}
+        className="mt-4 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"
+      >
+        Retry
+      </button>
+    </div>
     );
   }
 
@@ -70,55 +67,51 @@ function Home() {
             <div className="glass-container relative group p-8 rounded-3xl border border-white/10 bg-white/5  max-w-2xl w-full">
               <div className="absolute inset-0 rounded-3xl border border-white/5 bg-gradient-to-br from-white/10 to-transparent" />
               <div className="relative z-10 space-y-6">
-                <div className="flex justify-center">
-                  <div className="p-4 rounded-full bg-white/5 border border-white/10 ">
-                    <svg
-                      className="w-16 h-16 text-purple-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                      />
-                    </svg>
-                  </div>
+                <div className="flex justify-center">                  <div className="p-4 rounded-full bg-white/5 border border-white/10 ">
+                  <svg
+                    className="w-16 h-16 text-blue-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    />
+                  </svg>
                 </div>
-                <div className="space-y-4 text-center">
-                  <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent">
+                </div>                <div className="space-y-4 text-center">
+                  <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-200 to-blue-100 bg-clip-text text-transparent">
                     Discover Amazing Content
                   </h1>
-                  <p className="text-lg text-purple-100/80 font-medium">
+                  <p className="text-lg text-blue-100/80 font-medium">
                     Please sign in to view the latest content from our amazing creators.
                   </p>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button
-                    onClick={() => handleNavigate("/login")}
-                    className="px-8 py-3.5 rounded-xl bg-white/10 border border-white/20 cursor-pointer hover:bg-white/20 transition-all duration-300 font-semibold text-purple-50 flex items-center justify-center gap-2"
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">                  <button
+                  onClick={() => handleNavigate("/login")}
+                  className="px-8 py-3.5 rounded-xl bg-white/10 border border-white/20 cursor-pointer hover:bg-white/20 transition-all duration-300 font-semibold text-blue-50 flex items-center justify-center gap-2"
+                >
+                  <span>Sign In</span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    <span>Sign In</span>
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={() => handleNavigate("/signup")}
-                    className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all duration-300 font-semibold text-white flex items-center justify-center gap-2 shadow-lg shadow-purple-500/30 cursor-pointer"
-                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </button>                  <button
+                  onClick={() => handleNavigate("/signup")}
+                  className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-300 font-semibold text-white flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 cursor-pointer"
+                >
                     <span>Get Started</span>
                     <svg
                       className="w-4 h-4"
