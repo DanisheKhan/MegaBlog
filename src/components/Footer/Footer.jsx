@@ -62,7 +62,7 @@ const Footer = () => {
             <ul className="space-y-2 text-blue-100/80">
               <li>Eidgah Colony </li>
               <li>Bhusawal, BSL 425201</li>
-              <li>Email: khandanishe125@gmail.com</li>
+              <li>Email: danishkhan.jsx@gmail.com</li>
               <li>Phone: 9322990946</li>
             </ul>
           </div>
