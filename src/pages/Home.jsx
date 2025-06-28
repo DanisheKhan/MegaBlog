@@ -36,11 +36,10 @@ function Home() {
   const handleNavigate = (path) => {
     navigate(path);
   };
-
   if (loading) {
     return (<div className="min-h-screen flex items-center justify-center p-4">
       <div className="glass-container bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-lg">
-        <Loader type="particles" size="large" text="Welcome to MegaBlog..." />
+        <Loader variant="dots" size="large" text="Loading posts..." />
       </div>
     </div>
     );

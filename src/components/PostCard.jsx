@@ -7,11 +7,10 @@ function PostCard({ $id, title, featuredImage }) {
     e.target.src = '/Images/b.jpg'; // Fallback image
     e.target.classList.add('image-error');
   };
-
   return (
-    <Link to={`/post/${$id}`} className="block h-full page-transition">
-      <div className="group relative h-full overflow-hidden rounded-xl hover-lift">
-        <div className="bg-[#182234]/80 border border-gray-700/30 rounded-xl p-4 h-full flex flex-col shadow-lg">
+    <Link to={`/post/${$id}`} className="block h-full fade-in">
+      <div className="group relative h-full overflow-hidden rounded-xl hover-lift hover-scale transition-all duration-300">
+        <div className="bg-[#182234]/80 border border-gray-700/30 rounded-xl p-4 h-full flex flex-col shadow-lg glass-container">
           {/* Image shimmer effect while loading */}
           <div className="relative overflow-hidden rounded-lg mb-4 aspect-[4/3] flex-grow bg-gray-800/30">
             {/* Shimmer effect */}

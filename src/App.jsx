@@ -25,9 +25,18 @@ function App() {
   }, []);
 
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="glass-container bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl backdrop-blur-lg">
+          <Loader variant="dots" text="Loading application..." size="large" />
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="relative">
+    <div className="relative page-transition">
       <div className="bg" />
       <div className="min-h-screen flex flex-col relative w-full">
         <Header />
